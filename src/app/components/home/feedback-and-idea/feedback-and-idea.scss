@@ -1,0 +1,18 @@
+section {
+    padding: 40px 111px;
+
+    .collect {
+        height: 380px;
+
+        &__text {
+            width: 712px;
+        }
+
+        &__h1 {
+            font-size: 100px;
+            line-height: 89px;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+    }
+}
