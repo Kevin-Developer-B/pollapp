@@ -4,8 +4,12 @@ section {
     .collect {
         height: 380px;
 
-        &__text {
+
+        &__box {
             width: 712px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
         &__h1 {
@@ -13,6 +17,23 @@ section {
             line-height: 89px;
             letter-spacing: 0;
             font-weight: 400;
+            font-family: 'NerkoOne';
+            color: #FFB770;
+        }
+
+        &__text {
+            width: 666px;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 100%;
+            font-family: 'Mulish';
+            color: #FFFFFF;
+        }
+
+        &__btn {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
         }
     }
 }

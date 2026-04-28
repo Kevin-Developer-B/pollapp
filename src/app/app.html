@@ -1,4 +1,6 @@
-<div class="app-wrapper">
-    <app-header></app-header>
-    <router-outlet />
+<div class="body-wrapper" [class.body-wrapper--bg-home]="path==''" [class.body-wrapper--bg-surveys]="path=='surveys'">
+    <div class="app-wrapper">
+        <app-header></app-header>
+        <router-outlet />
+    </div>
 </div>

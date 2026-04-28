@@ -10,4 +10,11 @@ import { Header } from './layout/header/header';
 })
 export class App {
   protected readonly title = signal('PollApp');
+
+  path = "";
+  text = "New survey"
+
+  ngOnInit() {
+    this.path = ""
+  }
 }

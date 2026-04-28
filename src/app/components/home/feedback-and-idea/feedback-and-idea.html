@@ -1,12 +1,13 @@
 <section>
     <div class="collect">
-        <div class="collect__text">
+        <div class="collect__box">
             <h1 class="collect__h1">Collect Feedback, Unlock Ideas</h1>
-            <p class="collect">Create and share surveys in minutes – from team events to workplace culture. Collect
+            <p class="collect__text">Create and share surveys in minutes – from team events to workplace culture. Collect
                 opinions, engage your audience, and turn feedback into action.</p>
         </div>
-        <button class="btn">
-            <p class="collect">New survey</p>
+        <button class="btn collect__btn" [class.btn--primary]="path==''" [class.btn--secondary]="path=='surveys'">
+            <p class="btn__text">{{text}}</p>
+            <img class="btn__icon" src="./assets/img/icons/add_circle-icon.png" alt="">
         </button>
     </div>
     <div class="mobile-img"></div>

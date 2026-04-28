@@ -1,18 +1,2 @@
-* {
-    margin: 0;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
-}
-
-.app-wrapper {
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
-
-.btn {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
+@use './app/styles/base/mainBase';
+@use './app/styles/abstracts/colors'

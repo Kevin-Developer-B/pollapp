@@ -6,4 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: './feedback-and-idea.html',
   styleUrl: './feedback-and-idea.scss',
 })
-export class FeedbackAndIdea {}
+export class FeedbackAndIdea {
+  path = "";
+  text = "New survey"
+
+  ngOnInit() {
+    this.path = ""
+  }
+}
