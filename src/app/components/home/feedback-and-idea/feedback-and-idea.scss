@@ -1,5 +1,7 @@
 section {
     padding: 40px 111px;
+    display: flex;
+    justify-content: space-between;
 
     .collect {
         height: 380px;
@@ -34,6 +36,18 @@ section {
             margin-top: 40px;
             display: flex;
             align-items: center;
+        }
+    }
+
+    .mobile-img {
+        background-image: url('../../../../../public/assets/img/mobile.png');
+        height: 420px;
+        width: 420px;
+
+        &:hover {
+            background-image: url('../../../../../public/assets/img/mobile_hover.png');
+            height: 420px;
+            width: 420px;
         }
     }
 }
