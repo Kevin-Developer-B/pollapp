@@ -3,6 +3,15 @@ section {
     display: flex;
     justify-content: space-between;
 
+    h1 {
+        font-size: 100px;
+        line-height: 89px;
+        letter-spacing: 0;
+        font-weight: 400;
+        font-family: 'NerkoOne';
+        color: #FFB770;
+    }
+
     .collect {
         height: 380px;
 
@@ -12,15 +21,6 @@ section {
             display: flex;
             flex-direction: column;
             gap: 24px;
-        }
-
-        &__h1 {
-            font-size: 100px;
-            line-height: 89px;
-            letter-spacing: 0;
-            font-weight: 400;
-            font-family: 'NerkoOne';
-            color: #FFB770;
         }
 
         &__text {

@@ -1,0 +1,74 @@
+section {
+    padding: 20px 171px;
+}
+
+h2 {
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 100%;
+    text-align: center;
+    color: #FFB770;
+    font-family: 'NerkoOne';
+}
+
+.surveys {
+    margin-top: 32px;
+    font-family: 'Mulish';
+
+    h3 {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 100%;
+        color: #FFFFFF;
+        margin-bottom: 32px;
+    }
+
+    .card {
+        height: 310px;
+        width: 321px;
+        padding: 40px 18px;
+        background-color: #FAF5FE;
+        border-radius: 0 80px 0 0;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+        transition: 100ms ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #F4E9FB;
+
+            .card__day {
+                background-color: #FFB770;
+            }
+        }
+
+        &__category {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 100%;
+            margin-bottom: 8px;
+        }
+
+        h4 {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 100%;
+            font-style: bold;
+        }
+
+        &__day {
+            padding: 3px 6px;
+            width: max-content;
+            background-color: #FFCFA1;
+            border-radius: 0 14px 0 0;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 100%;
+            font-style: medium;
+            transition: 100ms ease-in-out;
+        }
+    }
+}
