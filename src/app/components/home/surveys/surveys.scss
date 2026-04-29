@@ -23,6 +23,13 @@ h2 {
         margin-bottom: 32px;
     }
 
+    .cardbox {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
     .card {
         height: 310px;
         width: 321px;
