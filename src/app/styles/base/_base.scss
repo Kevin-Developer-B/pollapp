@@ -30,10 +30,9 @@ button {
     cursor: pointer;
 }
 
-.btn {
+.collect-btn {
     position: relative;
     margin-top: 40px;
-    background-color: #FFCFA1;
     transition: all 256ms ease-in-out;
 
     &__text {
@@ -46,6 +45,7 @@ button {
     &__icon {
         position: absolute;
         opacity: 0;
+        top: 15px;
         right: -10px;
         transition: all 256ms ease-in-out;
     }
@@ -60,7 +60,7 @@ button {
         padding-right: 20px;
         background-color: #FFB770;
 
-        .btn__icon {
+        .collect-btn__icon {
             right: 10px;
             opacity: 1;
         }
