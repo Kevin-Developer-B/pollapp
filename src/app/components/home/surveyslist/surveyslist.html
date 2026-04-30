@@ -1,10 +1,28 @@
 <section>
     <div class="search-surveys">
         <div class="search-surveys__box">
-            <button class="btn search-surveys__active">Active survey</button>
-            <button class="btn search-surveys__past">Past survey</button>
+            <button class="search-surveys__btn" (click)="filterSelection('active')">Active survey</button>
+            <button class="search-surveys__btn" (click)="filterSelection('past')">Past survey</button>
         </div>
-        <button class="search-surveys__categories"></button>
+        <div class="dropdown">
+            <button (click)="toggleDropdown()" class="dropbtn">Sort by categories</button>
+            <div class="dropdown-content" *ngIf="isDropdownOpen">
+                <button>Team Activities</button>
+                <button>Health & Wellness</button>
+                <button>Gaming & Entertainment</button>
+                <button>Education & Learning</button>
+                <button>Lifestyle & Preferences</button>
+                <button>Technology & Innovation</button>
+            </div>
+        </div>
     </div>
-    <div class="surveyslist"></div>
+    <div class="surveyslist">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+
+    </div>
 </section>
