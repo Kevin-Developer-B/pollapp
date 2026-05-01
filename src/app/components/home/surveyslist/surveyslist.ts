@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,24 +10,25 @@ import { CommonModule } from '@angular/common';
 
 
 export class Surveyslist {
-  selectedCategory: string = "all";
+  selectedCategory: string = "active";
   isDropdownOpen = false;
+  dropdownText = signal("")
 
   cardlist = [
     {
       catergory: "Team activities",
       text: "Let’s Plan the Next Team Event Together",
-      day: "Ends in 1 Day"
+      day: "1"
     },
     {
       catergory: "Health & Wellness",
       text: "Fit & wellness survey!",
-      day: "Ends in 2 Day"
+      day: "2"
     },
     {
       catergory: "Gaming & Entertainment",
       text: "Gaming habits and favorite games!",
-      day: "Ends in 3 Day"
+      day: "3"
     },
   ]
 
@@ -37,5 +38,9 @@ export class Surveyslist {
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  activeCategory() {
+
   }
 }

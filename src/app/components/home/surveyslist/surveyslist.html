@@ -1,19 +1,28 @@
 <section>
     <div class="search-surveys">
         <div class="search-surveys__box">
-            <button class="search-surveys__btn" (click)="filterSelection('active')">Active survey</button>
-            <button class="search-surveys__btn" (click)="filterSelection('past')">Past survey</button>
+            <button class="search-surveys__btn" [class.active]="selectedCategory === 'active'"
+                (click)="filterSelection('active')">Active survey</button>
+            <button class="search-surveys__btn" [class.active]="selectedCategory === 'past'"
+                (click)="filterSelection('past')">Past survey</button>
         </div>
-        <div class="dropdown">
-            <button (click)="toggleDropdown()" class="dropbtn" [class.active]="isDropdownOpen"></button>
-            <div class="dropdown-content" *ngIf="isDropdownOpen">
-                <button>Team Activities</button>
-                <button>Health & Wellness</button>
-                <button>Gaming & Entertainment</button>
-                <button>Education & Learning</button>
-                <button>Lifestyle & Preferences</button>
-                <button>Technology & Innovation</button>
+        <div class="dropdownbox">
+            <div class="dropdown">
+                <button (click)="toggleDropdown()" class="dropbtn" [class.active]="isDropdownOpen"></button>
+                <div class="dropdown-content" *ngIf="isDropdownOpen">
+                    <button (click)="toggleDropdown(); dropdownText.set('Team Activities')">Team Activities</button>
+                    <button (click)="toggleDropdown(); dropdownText.set('Health & Wellness')">Health & Wellness</button>
+                    <button (click)="toggleDropdown(); dropdownText.set('Gaming & Entertainment')">Gaming &
+                        Entertainment</button>
+                    <button (click)="toggleDropdown(); dropdownText.set('Education & Learning')">Education &
+                        Learning</button>
+                    <button (click)="toggleDropdown(); dropdownText.set('Lifestyle & Preferences')">Lifestyle &
+                        Preferences</button>
+                    <button (click)="toggleDropdown(); dropdownText.set('Technology & Innovation')">Technology &
+                        Innovation</button>
+                </div>
             </div>
+            <p class="active-catergory">{{dropdownText()}}</p>
         </div>
     </div>
     <div class="surveyslist">

@@ -11,17 +11,17 @@ export class Surveys {
     {
       catergory: "Team activities",
       text: "Let’s Plan the Next Team Event Together",
-      day: "Ends in 1 Day"
+      day: "1"
     },
     {
       catergory: "Health & Wellness",
       text: "Fit & wellness survey!",
-      day: "Ends in 2 Day"
+      day: "2"
     },
     {
       catergory: "Gaming & Entertainment",
       text: "Gaming habits and favorite games!",
-      day: "Ends in 3 Day"
+      day: "3"
     },
   ]
 }

@@ -53,6 +53,10 @@ section {
         border-radius: 5px 50px 5px 5px;
     }
 
+    .dropdownbox {
+        position: relative;
+    }
+
 
     .dropbtn {
         background-image: url('../../../../../public/assets/img/dropdown_default.png');
@@ -90,6 +94,20 @@ section {
         .dropdown-content a:hover {
             background-color: #ddd;
         }
+    }
+
+    .active-catergory {
+        position: absolute;
+        height: 26px;
+        padding: 4px;
+        margin-left: 5px;
+
+        color: #FFB770;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 2%;
+        font-family: 'Mulish';
     }
 
 
