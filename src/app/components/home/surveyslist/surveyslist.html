@@ -5,7 +5,7 @@
             <button class="search-surveys__btn" (click)="filterSelection('past')">Past survey</button>
         </div>
         <div class="dropdown">
-            <button (click)="toggleDropdown()" class="dropbtn">Sort by categories</button>
+            <button (click)="toggleDropdown()" class="dropbtn" [class.active]="isDropdownOpen"></button>
             <div class="dropdown-content" *ngIf="isDropdownOpen">
                 <button>Team Activities</button>
                 <button>Health & Wellness</button>
@@ -23,6 +23,5 @@
         <div class="card"></div>
         <div class="card"></div>
         <div class="card"></div>
-
     </div>
 </section>

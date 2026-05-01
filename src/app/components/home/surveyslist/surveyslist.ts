@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 
 export class Surveyslist {
   selectedCategory: string = "all";
-  isDropdownOpen = true;
+  isDropdownOpen = false;
 
   cardlist = [
     {
