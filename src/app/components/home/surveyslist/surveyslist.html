@@ -10,7 +10,7 @@
             <div class="dropdown">
                 <button (click)="toggleDropdown()" class="dropbtn" [class.active]="isDropdownOpen"></button>
                 <div class="dropdown-content" *ngIf="isDropdownOpen">
-                    <button (click)="toggleDropdown(); dropdownText.set('Team Activities')">Team Activities</button>
+                    <button (click)="toggleDropdown(); filterCategory('Team activities'); dropdownText.set('Team Activities')">Team Activities</button>
                     <button (click)="toggleDropdown(); dropdownText.set('Health & Wellness')">Health & Wellness</button>
                     <button (click)="toggleDropdown(); dropdownText.set('Gaming & Entertainment')">Gaming &
                         Entertainment</button>
@@ -26,11 +26,12 @@
         </div>
     </div>
     <div class="surveyslist">
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
+        @for (item of cardlist; track item) {
+            <div class="card">
+                <p>{{item.catergory}}</p>
+                <h3>{{item.text}}</h3>
+                <p>Ends in {{item.day}} Day</p>
+            </div>
+        }
     </div>
 </section>
