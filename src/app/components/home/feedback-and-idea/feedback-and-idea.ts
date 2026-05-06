@@ -1,16 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-feedback-and-idea',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './feedback-and-idea.html',
   styleUrl: './feedback-and-idea.scss',
 })
 export class FeedbackAndIdea {
-  path = "";
-  text = "New survey"
 
-  ngOnInit() {
-    this.path = ""
-  }
 }
