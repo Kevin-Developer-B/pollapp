@@ -66,9 +66,28 @@ h2 {
         flex-direction: column;
     }
 
+    &--flex_align {
+        display: flex;
+        align-items: center;
+    }
+
     &--flex_between {
         width: 100%;
         display: flex;
         justify-content: space-between;
+    }
+}
+
+.trash {
+    background-image: url('../../../../public/assets/img/icons/delete.png');
+    width: 26px;
+    height: 26px;
+    background-size: cover;
+
+    &:hover {
+        background-image: url('../../../../public/assets/img/icons/delete_hover.png');
+        width: 26px;
+        height: 26px;
+        background-size: cover;
     }
 }
