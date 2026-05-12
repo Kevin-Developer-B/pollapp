@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Service } from '../../services/service';
 
 @Component({
@@ -9,13 +8,11 @@ import { Service } from '../../services/service';
   styleUrl: './surveyform.scss',
 })
 export class Surveyform {
-  route = inject(ActivatedRoute);
-  path = inject(Service);
-
+  path = "";
+  bgHome = inject(Service);
 
   ngOnInit() {
-    // let currentPath = this.route.snapshot.paramMap.get("form");
-    // if (currentPath) this.path.path = currentPath;
-    // console.log(this.path);
+    let currentBg = this.bgHome.setSecondary()
+    if (currentBg!) this.path = currentBg
   }
 }

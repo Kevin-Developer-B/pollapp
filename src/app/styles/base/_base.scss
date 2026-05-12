@@ -5,7 +5,12 @@
 }
 
 body {
-    background-color: #35273A;
+    &.body--primary {
+        background-color: #35273A;
+    }
+    &.body--secondary {
+        background-color: #FFFFFF;
+    }
 }
 
 

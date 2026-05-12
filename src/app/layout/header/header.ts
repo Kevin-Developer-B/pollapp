@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Service } from '../../services/service';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './header.scss',
 })
 export class Header {
-
+  headerLogo = inject(Service);
 }
