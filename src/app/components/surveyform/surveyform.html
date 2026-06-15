@@ -1,12 +1,12 @@
-<form>
+<form (ngSubmit)="onSubmit()">
     <div class="headline">
         <span>
             <h3>Draft</h3>
             <h2>Create new survey</h2>
         </span>
-        <button class="closeBtn">
-            <p class="closeBtn--color">Cancel</p>
-            <span class="closeBtn--color">X</span>
+        <button type="button" (click)="closeForm()" class="closeBtn closeBtn--color">
+            <p>Cancel</p>
+            <span>X</span>
         </button>
     </div>
     <div class="invest">
@@ -17,17 +17,51 @@
                         <label for="name">Survey name</label>
                         <span class="invest--flex_align">
                             <input type="text" id="name" name="">
-                            <button class="trash"></button>
+                            <button type="button" class="trash"></button>
                         </span>
                     </div>
 
                     <div>
-                        <span class="invest--flex_colume">
+                        <div class="invest--flex_colume">
                             <label for="lname">Set end date (optional)</label>
-                            <input type="text" id="lname" name="">
-                        </span>
+                            <span class="invest--flex_align">
+                                <input type="text" id="name" name="">
+                                <button type="button" class="trash"></button>
+                            </span>
+                        </div>
 
-                        <!-- dropdown menü -->
+                        <div class="dropdownbox">
+                            <div class="dropdown">
+                                <button type="button" (click)="dropdownMenu.toggleDropdown()" class="dropbtn"
+                                    [class.active]="dropdownMenu.isDropdownOpen"></button>
+                                <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Team Activities')">Team
+                                        Activities</button>
+                                    <button
+                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Health & Wellness')">Health
+                                        & Wellness</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming
+                                        &
+                                        Entertainment</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Education & Learning')">Education
+                                        &
+                                        Learning</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle
+                                        &
+                                        Preferences</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology
+                                        &
+                                        Innovation</button>
+                                </div>
+                            </div>
+                            <p class="active-catergory">{{dropdownMenu.dropdownText()}}</p>
+                        </div>
+
                     </div>
                 </div>
                 <div>
@@ -43,5 +77,5 @@
             <!-- questions -->
         </div>
     </div>
-    <input type="submit" value="Submit">
+    <button type="submit">Publish</button>
 </form>

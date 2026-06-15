@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DropdownMenu } from '../../../services/dropdown_service';
 
 @Component({
   selector: 'app-surveyslist',
@@ -10,10 +11,13 @@ import { CommonModule } from '@angular/common';
 
 
 export class Surveyslist {
+
+  dropdownMenu = inject(DropdownMenu);
+
   selectedActive: string = "active";
   selectedCategory: string = "";
-  isDropdownOpen = false;
-  dropdownText = signal("")
+
+
 
   allCards = [
     {
@@ -53,12 +57,4 @@ export class Surveyslist {
     let card = this.allCards.filter(card => card.catergory == item)
     if (card) this.cardlist = card
   }
-
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
-  // setActiveCategory(name: string) {
-  //   let tmpCard = this.cardlist.find(card => card.catergory == name)
-  // }
 }

@@ -2,27 +2,27 @@
     <div class="search-surveys">
         <div class="search-surveys__box">
             <button class="search-surveys__btn" [class.active]="selectedActive === 'active'"
-                (click)="filterSelection('active'); dropdownText.set('')">Active survey</button>
+                (click)="filterSelection('active'); dropdownMenu.dropdownText.set('')">Active survey</button>
             <button class="search-surveys__btn" [class.active]="selectedActive === 'past'"
-                (click)="filterSelection('past'); dropdownText.set('')">Past survey</button>
+                (click)="filterSelection('past'); dropdownMenu.dropdownText.set('')">Past survey</button>
         </div>
         <div class="dropdownbox">
             <div class="dropdown">
-                <button (click)="toggleDropdown()" class="dropbtn" [class.active]="isDropdownOpen"></button>
-                <div class="dropdown-content" *ngIf="isDropdownOpen">
-                    <button (click)="toggleDropdown(); filterCategory('Team activities'); dropdownText.set('Team Activities')">Team Activities</button>
-                    <button (click)="toggleDropdown(); filterCategory('Health & Wellness'); dropdownText.set('Health & Wellness')">Health & Wellness</button>
-                    <button (click)="toggleDropdown(); filterCategory('Gaming & Entertainment'); dropdownText.set('Gaming & Entertainment')">Gaming &
+                <button (click)="dropdownMenu.toggleDropdown()" class="dropbtn" [class.active]="dropdownMenu.isDropdownOpen"></button>
+                <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
+                    <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Team activities'); dropdownMenu.dropdownText.set('Team Activities')">Team Activities</button>
+                    <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Health & Wellness'); dropdownMenu.dropdownText.set('Health & Wellness')">Health & Wellness</button>
+                    <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Gaming & Entertainment'); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming &
                         Entertainment</button>
-                    <button (click)="toggleDropdown(); filterCategory('Education & Learning'); dropdownText.set('Education & Learning')">Education &
+                    <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Education & Learning'); dropdownMenu.dropdownText.set('Education & Learning')">Education &
                         Learning</button>
-                    <button (click)="toggleDropdown(); filterCategory('Lifestyle & Preferences'); dropdownText.set('Lifestyle & Preferences')">Lifestyle &
+                    <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Lifestyle & Preferences'); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle &
                         Preferences</button>
-                    <button (click)="toggleDropdown(); filterCategory('Technology & Innovation'); dropdownText.set('Technology & Innovation')">Technology &
+                    <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Technology & Innovation'); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology &
                         Innovation</button>
                 </div>
             </div>
-            <p class="active-catergory">{{dropdownText()}}</p>
+            <p class="active-catergory">{{dropdownMenu.dropdownText()}}</p>
         </div>
     </div>
     <div class="surveyslist">
