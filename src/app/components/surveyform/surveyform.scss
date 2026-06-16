@@ -91,10 +91,26 @@ h2 {
         gap: 8px;
     }
 
+    &--flex_align-start {
+        display: flex;
+        align-items: start;
+        gap: 8px;
+    }
+
     &--flex_between {
         width: 100%;
         display: flex;
         justify-content: space-between;
+    }
+
+    .date-category-box {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .description {
+        width: 418px;
+        height: 108px;
     }
 }
 

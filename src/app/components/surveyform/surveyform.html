@@ -21,15 +21,14 @@
                         </span>
                     </div>
 
-                    <div>
+                    <div class="date-category-box">
                         <div class="invest--flex_colume">
-                            <label for="lname">Set end date (optional)</label>
+                            <label for="lname">Set end date <span>(optional)</span></label>
                             <span class="invest--flex_align">
                                 <input type="text" id="name" name="">
                                 <button type="button" class="trash"></button>
                             </span>
                         </div>
-
                         <div class="dropdownbox">
                             <div class="dropdown">
                                 <button type="button" (click)="dropdownMenu.toggleDropdown()" class="dropbtn"
@@ -38,7 +37,7 @@
                                     <button type="button"
                                         (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Team Activities')">Team
                                         Activities</button>
-                                    <button
+                                    <button type="button"
                                         (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Health & Wellness')">Health
                                         & Wellness</button>
                                     <button type="button"
@@ -66,8 +65,11 @@
                 </div>
                 <div>
                     <span class="invest--flex_colume">
-                        <label for="description">Description text (optional)</label>
-                        <input type="text" id="description" name="">
+                        <label for="description">Description text <span>(optional)</span></label>
+                        <span class="invest--flex_align-start">
+                            <input class="description" type="text" id="description" name="">
+                            <button type="button" class="trash"></button>
+                        </span>
                     </span>
 
                 </div>
