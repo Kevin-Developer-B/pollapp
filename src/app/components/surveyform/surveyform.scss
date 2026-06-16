@@ -1,3 +1,6 @@
+@use '../../styles/abstracts/mixin' as mx;
+@use '../../styles/abstracts/function' as fc;
+
 form {
     border-radius: 5px 100px 5px 5px;
     background-color: #35273A;
@@ -5,7 +8,7 @@ form {
     cursor: default;
 
     label {
-        font-size: 18px;
+        font-size: fc.px-to-rem(18);
         font-weight: 700;
         font-family: 'Mulish';
         color: #FEFDFF;
@@ -35,7 +38,7 @@ h3 {
     justify-content: center;
     background-color: #FFCFA1;
     border-top-right-radius: 14px;
-    font-size: 16px;
+    font-size: fc.px-to-rem(16);
     margin-bottom: 8px;
 }
 
@@ -61,7 +64,7 @@ h2 {
 
     &--color {
         color: #FEFDFF;
-        font-size: 16px;
+        font-size: fc.px-to-rem(16);
         font-weight: 700;
         line-height: 100%;
         font-family: 'Nokora';
@@ -73,6 +76,9 @@ h2 {
     padding: 40px 32px;
     border-radius: 5px 80px 5px 5px;
     background-color: #8E709929;
+    gap: 80px;
+    display: flex;
+    flex-direction: column;
 
     &__box {
         width: 470px;
@@ -183,4 +189,19 @@ h2 {
     line-height: 100%;
     letter-spacing: 2%;
     font-family: 'Mulish';
+}
+
+.questions {
+    @include mx.flex-column;
+    @include mx.gap(24px);
+    width: 429px;
+
+    &__headline {
+        @include mx.flex-column;
+        @include mx.gap;
+
+        &--flex-between {
+            @include mx.flex-between;
+        }
+    }
 }
