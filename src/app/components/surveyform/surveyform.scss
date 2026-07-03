@@ -262,3 +262,88 @@ h2 {
     @include mx.gap;
     margin-top: 8px;
 }
+
+.button-box {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+.btn {
+    position: relative;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: 250ms ease-in-out;
+
+    &--primary {
+        background-color: #FFCFA1;
+        font-size: 18px;
+        font-weight: 700;
+        font-family: "Nokora";
+        line-height: 100%;
+    }
+
+    &__chop {
+        position: absolute;
+        height: auto;
+        width: 40px;
+        top: 0;
+        opacity: 0;
+        animation: 250ms opacityOut forwards;
+    }
+
+    &:hover {
+        background-color: #FFB770;
+        padding-right: 45px;
+        transition: 250ms ease-in-out;
+
+        .btn__chop {
+            animation: 250ms opacityIn forwards;
+        }
+    }
+}
+
+@keyframes opacityIn {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0.25;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacityOut {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0.75;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.25;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
