@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Service } from '../../services/service';
 import { DropdownMenu } from '../../services/dropdown_service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-surveyform',
@@ -15,15 +16,20 @@ export class Surveyform {
   dropdownMenu = inject(DropdownMenu);
   formOpen = true
 
+  router = inject(Router);
+
   ngOnInit() {
     let currentBg = this.bgHome.setSecondary()
     if (currentBg!) this.path = currentBg
   }
 
-  closeForm() { }
+  closeForm() { 
+    this.router.navigate([""]);
+  }
 
   onSubmit() {
     // TODO: Use output() with form value
+    
     console.warn();
   }
 }

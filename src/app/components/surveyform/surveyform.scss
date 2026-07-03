@@ -6,12 +6,12 @@ form {
     background-color: #35273A;
     padding: 40px 54px;
     cursor: default;
+    color: #FEFDFF;
 
     label {
         font-size: fc.px-to-rem(18);
         font-weight: 700;
         font-family: 'Mulish';
-        color: #FEFDFF;
         line-height: 100%;
     }
 
@@ -204,4 +204,61 @@ h2 {
             @include mx.flex-between;
         }
     }
+}
+
+.answers {
+    @include mx.flex-between;
+}
+
+.more-answers {
+    @include mx.flex-between;
+    @include mx.gap;
+
+    input[type="checkbox"] {
+        appearance: none;
+        padding: 0;
+        height: 15px;
+        width: 15px;
+        border: 1.5px solid #FFFFFF;
+        border-radius: 3px;
+
+        display: grid;
+        place-content: center;
+
+        &::before {
+            content: "";
+            height: 15px;
+            width: 15px;
+            transform: scale(0);
+            background-image: url("./../../../../public/assets/img/icons/check.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 15px;
+            background-color: #EE9236;
+            border-radius: 3px;
+        }
+
+        &:checked::before {
+            transform: scale(1);
+        }
+
+        &:hover {
+            background-color: #ddb895;
+            cursor: pointer;
+        }
+    }
+
+    &__text {
+        font-size: 12px;
+        font-weight: 400;
+        font-family: "Mulish";
+        line-height: 100%;
+        letter-spacing: 0;
+    }
+}
+
+.answer {
+    @include mx.flex-between;
+    @include mx.gap;
+    margin-top: 8px;
 }
