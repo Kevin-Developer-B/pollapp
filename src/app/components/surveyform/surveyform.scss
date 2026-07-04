@@ -290,23 +290,30 @@ h2 {
         width: 40px;
         top: 0;
         opacity: 0;
-        animation: 300ms opacityOut forwards;
+        transition: opacity 250ms ease-in-out;
     }
 
     &:hover {
         background-color: #FFB770;
         padding-right: 45px;
-        transition: 250ms ease-in-out;
 
         .btn__chop {
-            animation: 250ms opacityIn forwards;
+            opacity: 1;
         }
     }
 }
 
-button:disabled {
+.btn:disabled {
     background-color: grey;
     cursor: default;
+
+    &:hover {
+        padding-right: 16px;
+        background-color: grey;
+        .btn__chop {
+            opacity: 0;
+        }
+    }
 }
 
 @keyframes opacityIn {
