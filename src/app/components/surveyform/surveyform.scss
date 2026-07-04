@@ -290,7 +290,7 @@ h2 {
         width: 40px;
         top: 0;
         opacity: 0;
-        animation: 250ms opacityOut forwards;
+        animation: 300ms opacityOut forwards;
     }
 
     &:hover {
@@ -302,6 +302,11 @@ h2 {
             animation: 250ms opacityIn forwards;
         }
     }
+}
+
+button:disabled {
+    background-color: grey;
+    cursor: default;
 }
 
 @keyframes opacityIn {

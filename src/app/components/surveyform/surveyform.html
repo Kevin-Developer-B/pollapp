@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<form [formGroup]="surveyform">
     <div class="headline">
         <span>
             <h3>Draft</h3>
@@ -16,7 +16,7 @@
                     <div class="invest--flex_colume">
                         <label for="name">Survey name</label>
                         <span class="invest--flex_align">
-                            <input type="text" id="name" name="">
+                            <input type="text" id="name" formControlName="surveyname">
                             <button type="button" class="trash"></button>
                         </span>
                     </div>
@@ -25,7 +25,7 @@
                         <div class="invest--flex_colume">
                             <label for="lname">Set end date <span>(optional)</span></label>
                             <span class="invest--flex_align">
-                                <input type="text" id="name" name="">
+                                <input type="text" id="name" >
                                 <button type="button" class="trash"></button>
                             </span>
                         </div>
@@ -92,13 +92,13 @@
                     </div>
                 </div>
                 <div class="answer">
-                    <p>A.</p>
-                    <input type="text">
+                    <label for="A">A.</label>
+                    <input id="A" type="text">
                     <button type="button" class="trash"></button>
                 </div>
                 <div class="answer">
-                    <p>B.</p>
-                    <input type="text">
+                    <label for="B">B.</label>
+                    <input id="B" type="text">
                     <button type="button" class="trash"></button>
                 </div>
 
@@ -106,8 +106,10 @@
         </div>
     </div>
     <div class="button-box">
-        <button class="btn btn--primary" type="submit">Publish
+        <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
             <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
         </button>
     </div>
 </form>
+
+<h1>{{surveyform.get("surveyname")?.valid}}</h1>
