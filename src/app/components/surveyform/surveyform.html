@@ -1,4 +1,4 @@
-<form [formGroup]="surveyform">
+<form [formGroup]="surveyform" (ngSubmit)="submit()">
     <div class="headline">
         <span>
             <h3>Draft</h3>
@@ -9,6 +9,153 @@
             <span>X</span>
         </button>
     </div>
+    <div class="container">
+        <div class="labeling">
+            <div class="entry-details">
+                <div class="surveyname">
+                    <label>Survey Name</label>
+                    <div class="surveyname--flex">
+                        <input type="text" formControlName="surveyname">
+                        <button type="button" class="trash"></button>
+                    </div>
+                </div>
+                <div class="date-category">
+                    <div class="date-category__date">
+                        <label>Set end date <span>(optional)</span></label>
+                        <div class="date-category__date--flex">
+                            <input type="text" formControlName="date">
+                            <button type="button" class="trash"></button>
+                        </div>
+                    </div>
+                    <div class="dropdownbox">
+                        <div class="dropdown">
+                            <button type="button" (click)="dropdownMenu.toggleDropdown()" class="dropbtn"
+                                [class.active]="dropdownMenu.isDropdownOpen"></button>
+                            <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
+                                <button type="button"
+                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Team Activities')">Team
+                                    Activities</button>
+                                <button type="button"
+                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Health & Wellness')">Health
+                                    & Wellness</button>
+                                <button type="button"
+                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming
+                                    &
+                                    Entertainment</button>
+                                <button type="button"
+                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Education & Learning')">Education
+                                    &
+                                    Learning</button>
+                                <button type="button"
+                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle
+                                    &
+                                    Preferences</button>
+                                <button type="button"
+                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology
+                                    &
+                                    Innovation</button>
+                            </div>
+                        </div>
+                        <p class="active-catergory">{{dropdownMenu.dropdownText()}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <label for="description">Description text <span>(optional)</span></label>
+                <div class="description--flex">
+                    <input class="description__input" type="text" id="description" name="">
+                    <button type="button" class="trash"></button>
+                </div>
+            </div>
+        </div>
+        <div formArrayName="questions">
+            @for (question of questions.controls; track $index; let questionIndex = $index) {
+            <div class="question" [formGroupName]="$index">
+                <div class="question-headline">
+                    <div class="question-headline--flex">
+                        <div>
+                            <h4>{{ $index + 1}}. Question</h4>
+                        </div>
+                        <button type="button" class="trash"></button>
+                    </div>
+                    <input type="text" formControlName="question" placeholder="Which date would work best for you?">
+                </div>
+                <div class="answer">
+                    <div class="answer__headline">
+                        <h4>Answers</h4>
+                        <label class="answer__checkbox">
+                            <input type="checkbox" formControlName="multipleAnswers">
+                            <p class="answer__checkbox--text">Allow multiple answers</p>
+                        </label>
+                    </div>
+                    <div formArrayName="answers">
+                        @for(answer of getAnswers(questionIndex).controls; track $index; let answerIndex = $index) {
+                        <div class="answer-box">
+                            <label>
+                                {{ getAnswerLabel(answerIndex)+"." }}
+                            </label>
+                            <input type="text" [formControlName]="$index">
+                            <button class="trash" type="button"
+                                (click)="removeAnswer(questionIndex, answerIndex)"></button>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="button-box">
+        <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
+            <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
+        </button>
+    </div>
+</form>
+
+<!-- <div formArrayName="questions">
+        @for (question of questions.controls; track $index; let questionIndex = $index) {
+        <div class="question" [formGroupName]="$index">
+            <h3>
+                Question {{ $index + 1 }}
+            </h3>
+            <input type="text" formControlName="question" placeholder="Enter question">
+            <label>
+                <input type="checkbox" formControlName="multipleAnswers">
+                Allow multiple answers
+            </label>
+            <div formArrayName="answers">
+                @for(answer of getAnswers(questionIndex).controls; track $index; let answerIndex = $index) {
+                <div class="answer">
+                    <label>
+                        {{ getAnswerLabel(answerIndex)+"." }}
+                    </label>
+                    <input type="text" [formControlName]="$index">
+                    <button type="button" (click)="removeAnswer(questionIndex, answerIndex)">
+                        Delete
+                    </button>
+                </div>
+                }
+            </div>
+            <button type="button" (click)="addAnswer($index)">
+                + Add Answer
+            </button>
+            <button type="button" (click)="removeQuestion($index)">
+                Delete Question
+            </button>
+        </div>
+        }
+    </div>
+    <button type="button" (click)="addQuestion()">
+        + Add Question
+    </button>
+    <button type="submit" [disabled]="surveyform.invalid">
+        Save Survey
+    </button> -->
+
+
+
+<!-- <form [formGroup]="surveyform">
+    
     <div class="invest">
         <div class="invest--flex_colume">
             <div class="invest--flex_between">
@@ -25,7 +172,7 @@
                         <div class="invest--flex_colume">
                             <label for="lname">Set end date <span>(optional)</span></label>
                             <span class="invest--flex_align">
-                                <input type="text" id="name" >
+                                <input type="text" id="name">
                                 <button type="button" class="trash"></button>
                             </span>
                         </div>
@@ -64,17 +211,20 @@
                     </div>
                 </div>
                 <div>
-                    <span class="invest--flex_colume">
-                        <label for="description">Description text <span>(optional)</span></label>
-                        <span class="invest--flex_align-start">
-                            <input class="description" type="text" id="description" name="">
-                            <button type="button" class="trash"></button>
-                        </span>
-                    </span>
+                    
 
                 </div>
             </div>
         </div>
+        <div formArrayName="questions">
+            @for (question of questions.controls; track $index) {
+            <div class="questions" [formGroupName]="$index"></div>
+            }
+        </div>
+
+
+
+
         <div class="questions">
             <div class="questions__headline">
                 <div class="questions__headline--flex-between">
@@ -112,4 +262,4 @@
     </div>
 </form>
 
-<h1>{{surveyform.get("surveyname")?.valid}}</h1>
+<h1>{{surveyform.get("surveyname")?.valid}}</h1> -->
