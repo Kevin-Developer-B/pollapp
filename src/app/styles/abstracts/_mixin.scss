@@ -11,6 +11,7 @@
 @mixin flex-center {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 @mixin flex-between-center {

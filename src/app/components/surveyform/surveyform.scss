@@ -120,8 +120,13 @@ h2 {
     @include mx.gap(4px);
     width: 452px;
 
+    input {
+        height: 108px
+    }
+
     &--flex {
-        @include mx.flex-between-center;
+        display: flex;
+        align-items: flex-start;
         @include mx.gap;
     }
 }
@@ -195,6 +200,12 @@ h2 {
     line-height: 100%;
     letter-spacing: 2%;
     font-family: 'Mulish';
+}
+
+.questionsbox {
+    height: auto;
+    max-height: 400px;
+    overflow: auto;
 }
 
 .question {
@@ -281,9 +292,60 @@ h2 {
 
 .button-box {
     width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 40px;
+
+    &--add_answer {
+        margin-top: 10px;
+        margin-left: 36px;
+    }
+
+    &--public {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 40px;
+    }
+}
+
+.add_answer_btn {
+    position: relative;
+    height: 40px;
+    width: 146px;
+    @include mx.flex-center;
+    @include mx.gap;
+
+    &:active {
+        background-color: #ffffff41;
+    }
+
+    .position {
+        width: 126px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        margin-bottom: 8px;
+
+        &__text {
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Nokora';
+            color: #FEFDFF;
+            letter-spacing: 2%;
+            line-height: 100%;
+        }
+
+        img {
+            height: 24px;
+            width: 24px;
+        }
+    }
+
+    .underline {
+        position: absolute;
+        bottom: 8px;
+        width: 126px;
+        height: 2px;
+        background-color: #FFFFFF;
+        border: none;
+    }
 }
 
 .btn {

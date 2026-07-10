@@ -68,44 +68,55 @@
                 </div>
             </div>
         </div>
-        <div formArrayName="questions">
-            @for (question of questions.controls; track $index; let questionIndex = $index) {
-            <div class="question" [formGroupName]="$index">
-                <div class="question-headline">
-                    <div class="question-headline--flex">
-                        <div>
-                            <h4>{{ $index + 1}}. Question</h4>
+        <div class="questionsbox">
+            <div formArrayName="questions">
+                @for (question of questions.controls; track $index; let questionIndex = $index) {
+                <div class="question" [formGroupName]="$index">
+                    <div class="question-headline">
+                        <div class="question-headline--flex">
+                            <div>
+                                <h4>{{ $index + 1}}. Question</h4>
+                            </div>
+                            <button type="button" class="trash"></button>
                         </div>
-                        <button type="button" class="trash"></button>
+                        <input type="text" formControlName="question" placeholder="Which date would work best for you?">
                     </div>
-                    <input type="text" formControlName="question" placeholder="Which date would work best for you?">
-                </div>
-                <div class="answer">
-                    <div class="answer__headline">
-                        <h4>Answers</h4>
-                        <label class="answer__checkbox">
-                            <input type="checkbox" formControlName="multipleAnswers">
-                            <p class="answer__checkbox--text">Allow multiple answers</p>
-                        </label>
-                    </div>
-                    <div formArrayName="answers">
-                        @for(answer of getAnswers(questionIndex).controls; track $index; let answerIndex = $index) {
-                        <div class="answer-box">
-                            <label>
-                                {{ getAnswerLabel(answerIndex)+"." }}
+                    <div class="answer">
+                        <div class="answer__headline">
+                            <h4>Answers</h4>
+                            <label class="answer__checkbox">
+                                <input type="checkbox" formControlName="multipleAnswers">
+                                <p class="answer__checkbox--text">Allow multiple answers</p>
                             </label>
-                            <input type="text" [formControlName]="$index">
-                            <button class="trash" type="button"
-                                (click)="removeAnswer(questionIndex, answerIndex)"></button>
                         </div>
-                        }
+                        <div formArrayName="answers">
+                            @for(answer of getAnswers(questionIndex).controls; track $index; let answerIndex = $index) {
+                            <div class="answer-box">
+                                <label>
+                                    {{ getAnswerLabel(answerIndex)+"." }}
+                                </label>
+                                <input type="text" [formControlName]="$index">
+                                <button class="trash" type="button"
+                                    (click)="removeAnswer(questionIndex, answerIndex)"></button>
+                            </div>
+                            }
+                            <div class="button-box button-box--add_answer">
+                                <button class="add_answer_btn" type="button" (click)="addAnswer($index)">
+                                    <div class="position">
+                                        <p class="position__text">Add answer</p>
+                                        <img src="./assets/img/icons/add_circle-white.svg" alt="Weißes Hinzufügen Icon">
+                                    </div>
+                                    <hr class="underline">
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                }
             </div>
-            }
         </div>
     </div>
-    <div class="button-box">
+    <div class="button-box button-box--public">
         <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
             <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
         </button>
