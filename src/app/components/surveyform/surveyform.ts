@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-survey',
   standalone: true,
-  imports: [ CommonModule, ReactiveFormsModule ],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './surveyform.html',
   styleUrl: './surveyform.scss'
 })
@@ -17,6 +17,10 @@ export class SurveyForm implements OnInit {
   dropdownMenu = inject(DropdownMenu);
   bgHome = inject(Service);
   path = "";
+  maxAnswer = 6;
+  minAnswer = 2;
+  showAnswerLimit = false;
+  answerText = "You can add up to 6 answer fields.";
 
   surveyform = new FormGroup({
     surveyname: new FormControl('', {
@@ -72,7 +76,19 @@ export class SurveyForm implements OnInit {
   }
 
   addAnswer(questionIndex: number): void {
-    this.getAnswers(questionIndex).push(this.createAnswer());
+    let answer = this.getAnswers(questionIndex);
+    this.showAnswerLimit = true;
+    if (answer.length >= this.maxAnswer) {
+      return
+    }
+    if (answer.length >= this.maxAnswer -1) {
+      this.showAnswerLimit = false;
+    }
+    answer.push(this.createAnswer());
+  }
+
+  canAddAnswer(questionIndex: number): boolean {
+    return this.getAnswers(questionIndex).length < this.maxAnswer;
   }
 
   removeAnswer(questionIndex: number, answerIndex: number): void {
@@ -88,69 +104,3 @@ export class SurveyForm implements OnInit {
   }
 
 }
-
-
-// import { Component, inject } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { Service } from '../../services/service';
-// import { DropdownMenu } from '../../services/dropdown_service';
-// import { Router } from '@angular/router';
-// import { FormControl, ReactiveFormsModule, FormGroup, Validators, FormArray } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-surveyform',
-//   imports: [CommonModule, ReactiveFormsModule],
-//   templateUrl: './surveyform.html',
-//   styleUrl: './surveyform.scss',
-// })
-// export class Surveyform {
-//   bgHome = inject(Service);
-//   dropdownMenu = inject(DropdownMenu);
-//   router = inject(Router);
-//   formOpen = true
-//   path = "";
-
-//   ngOnInit() {
-//     let currentBg = this.bgHome.setSecondary()
-//     if (currentBg!) this.path = currentBg
-//     this.addQuestion();
-//   }
-
-
-
-//   surveyform = new FormGroup({
-//     surveyname: new FormControl('', {
-//       validators: [Validators.required]
-//     }),
-
-//     questions: new FormArray([])
-//   });
-
-//   get questions(): FormArray {
-//     return this.surveyform.get('questions') as FormArray;
-//   }
-
-//   private createQuestion(): FormGroup {
-//     return new FormGroup({
-//       question: new FormControl('', {
-//         validators: [Validators.required]
-//       }),
-
-//       multipleAnswers: new FormControl(false),
-
-//       answers: new FormArray([])
-//     });
-//   }
-
-//   addQuestion(): void {
-//     this.questions.push(this.createQuestion());
-//   }
-
-//   
-
-//   onSubmit() {
-//     // TODO: Use output() with form value
-
-//     console.warn();
-//   }
-// }

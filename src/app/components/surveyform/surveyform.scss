@@ -327,7 +327,15 @@ h2 {
 
     &--add_answer {
         margin-top: 10px;
-        margin-left: 36px;
+        padding-left: 36px;
+        @include mx.flex-center;
+        justify-content: space-between;
+
+        &__notice {
+            font-family: '';
+            font-size: 14px;
+            color: #dddddd67;
+        }
     }
 
     &--public {
@@ -348,6 +356,8 @@ h2 {
         background-color: #ffffff41;
     }
 
+
+
     .position {
         width: 126px;
         display: flex;
@@ -358,7 +368,7 @@ h2 {
         &__text {
             font-size: 16px;
             font-weight: 700;
-            font-family: 'Nokora';
+            font-family: 'Mulish';
             color: #FEFDFF;
             letter-spacing: 2%;
             line-height: 100%;
@@ -378,6 +388,10 @@ h2 {
         background-color: #FFFFFF;
         border: none;
     }
+}
+
+.add_answer_btn:disabled {
+    display: none;
 }
 
 .btn {

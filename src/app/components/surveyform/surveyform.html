@@ -102,13 +102,16 @@
                             </div>
                             }
                             <div class="button-box button-box--add_answer">
-                                <button class="add_answer_btn" type="button" (click)="addAnswer($index)">
+                                <button class="add_answer_btn" type="button" (click)="addAnswer($index)" [disabled]="!canAddAnswer(questionIndex)">
                                     <div class="position">
                                         <p class="position__text">Add answer</p>
                                         <img src="./assets/img/icons/add_circle-white.svg" alt="Weißes Hinzufügen Icon">
                                     </div>
                                     <hr class="underline">
                                 </button>
+                                @if (showAnswerLimit) {
+                                    <p class="button-box--add_answer__notice">{{answerText}}</p>
+                                }
                             </div>
                         </div>
                     </div>
