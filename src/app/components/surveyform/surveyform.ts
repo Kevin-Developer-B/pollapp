@@ -44,7 +44,7 @@ export class SurveyForm implements OnInit {
   }
 
   private createQuestion(): FormGroup {
-    const answers = new FormArray([
+    let answers = new FormArray([
       this.createAnswer(),
       this.createAnswer()
     ]);
@@ -57,6 +57,14 @@ export class SurveyForm implements OnInit {
 
   addQuestion(): void {
     this.questions.push(this.createQuestion());
+  }
+
+  clearQuestion(questionIndex: number): void {
+    let question = this.questions.at(questionIndex) as FormGroup;
+    question.get('question')?.reset('');
+    question.get('multipleAnswers')?.setValue(false);
+    let answers = question.get('answers') as FormArray;
+    answers.controls.forEach(answer => answer.reset(''));
   }
 
   removeQuestion(index: number): void {
@@ -77,14 +85,15 @@ export class SurveyForm implements OnInit {
 
   addAnswer(questionIndex: number): void {
     let answer = this.getAnswers(questionIndex);
-    this.showAnswerLimit = true;
     if (answer.length >= this.maxAnswer) {
       return
     }
-    if (answer.length >= this.maxAnswer -1) {
-      this.showAnswerLimit = false;
-    }
     answer.push(this.createAnswer());
+  }
+
+  showAnswerNotice(questionIndex: number): boolean {
+    let answerCount = this.getAnswers(questionIndex).length;
+    return answerCount >= 3 && answerCount < this.maxAnswer;
   }
 
   canAddAnswer(questionIndex: number): boolean {

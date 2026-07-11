@@ -21,6 +21,11 @@ form {
         border-radius: 5px 20px 5px 5px;
         height: 37px;
         padding: 7px 13px;
+
+        &:focus {
+            outline: none;
+            background-color: #f3ddc9;
+        }
     }
 }
 
@@ -81,7 +86,8 @@ h2 {
 }
 
 .labeling {
-    @include mx.flex-between;
+    display: flex;
+    gap: 64px
 }
 
 .entry-details {
@@ -120,8 +126,18 @@ h2 {
     @include mx.gap(4px);
     width: 452px;
 
-    input {
-        height: 108px
+    textarea {
+        height: 108px;
+        width: 418px;
+        border-radius: 5px 20px 5px 5px;
+        padding: 7px 13px;
+        border: none;
+        resize: none;
+
+        &:focus {
+            outline: none;
+            background-color: #f3ddc9;
+        }
     }
 
     &--flex {
@@ -211,7 +227,7 @@ h2 {
 .questions-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px
+    gap: 20px 0;
 }
 
 .question {
