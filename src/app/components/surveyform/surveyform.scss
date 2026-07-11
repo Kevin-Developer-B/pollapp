@@ -203,15 +203,22 @@ h2 {
 }
 
 .questionsbox {
-    height: auto;
+    width: 100%;
     max-height: 400px;
     overflow: auto;
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px
 }
 
 .question {
     @include mx.flex-column;
     @include mx.gap(24px);
-    width: 429px;
+    width: 100%;
+    max-width: 430px;
 }
 
 .question-headline {
@@ -224,6 +231,31 @@ h2 {
 
     &--flex {
         @include mx.flex-between-center;
+    }
+}
+
+.add-question-btn {
+    @include mx.flex-between-center;
+    @include mx.gap;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background-color: #FFB7704D;
+    transition: 125ms ease-in-out;
+
+    &:hover {
+        background-color: #ffb77081;
+    }
+
+    &__text {
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Nokora';
+        color: #FEFDFF;
+    }
+
+    &__img {
+        height: 20px;
+        width: 20px;
     }
 }
 

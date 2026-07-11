@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="questionsbox">
-            <div formArrayName="questions">
+            <div class="questions-grid" formArrayName="questions">
                 @for (question of questions.controls; track $index; let questionIndex = $index) {
                 <div class="question" [formGroupName]="$index">
                     <div class="question-headline">
@@ -90,7 +90,8 @@
                             </label>
                         </div>
                         <div formArrayName="answers">
-                            @for(answer of getAnswers(questionIndex).controls; track $index; let answerIndex = $index) {
+                            @for(answer of getAnswers(questionIndex).controls; track $index; let answerIndex =
+                            $index) {
                             <div class="answer-box">
                                 <label>
                                     {{ getAnswerLabel(answerIndex)+"." }}
@@ -113,6 +114,16 @@
                     </div>
                 </div>
                 }
+                <div class="add-question-card">
+                    <button class="add-question-btn" type="button" (click)="addQuestion()">
+                        <p class="add-question-btn__text">Add next question</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                            fill="#FEFDFF">
+                            <path
+                                d="M444-288h72v-156h156v-72H516v-156h-72v156H288v72h156v156Zm36.28 192Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -122,155 +133,3 @@
         </button>
     </div>
 </form>
-
-<!-- <div formArrayName="questions">
-        @for (question of questions.controls; track $index; let questionIndex = $index) {
-        <div class="question" [formGroupName]="$index">
-            <h3>
-                Question {{ $index + 1 }}
-            </h3>
-            <input type="text" formControlName="question" placeholder="Enter question">
-            <label>
-                <input type="checkbox" formControlName="multipleAnswers">
-                Allow multiple answers
-            </label>
-            <div formArrayName="answers">
-                @for(answer of getAnswers(questionIndex).controls; track $index; let answerIndex = $index) {
-                <div class="answer">
-                    <label>
-                        {{ getAnswerLabel(answerIndex)+"." }}
-                    </label>
-                    <input type="text" [formControlName]="$index">
-                    <button type="button" (click)="removeAnswer(questionIndex, answerIndex)">
-                        Delete
-                    </button>
-                </div>
-                }
-            </div>
-            <button type="button" (click)="addAnswer($index)">
-                + Add Answer
-            </button>
-            <button type="button" (click)="removeQuestion($index)">
-                Delete Question
-            </button>
-        </div>
-        }
-    </div>
-    <button type="button" (click)="addQuestion()">
-        + Add Question
-    </button>
-    <button type="submit" [disabled]="surveyform.invalid">
-        Save Survey
-    </button> -->
-
-
-
-<!-- <form [formGroup]="surveyform">
-    
-    <div class="invest">
-        <div class="invest--flex_colume">
-            <div class="invest--flex_between">
-                <div class="invest__box invest--flex_colume">
-                    <div class="invest--flex_colume">
-                        <label for="name">Survey name</label>
-                        <span class="invest--flex_align">
-                            <input type="text" id="name" formControlName="surveyname">
-                            <button type="button" class="trash"></button>
-                        </span>
-                    </div>
-
-                    <div class="date-category-box">
-                        <div class="invest--flex_colume">
-                            <label for="lname">Set end date <span>(optional)</span></label>
-                            <span class="invest--flex_align">
-                                <input type="text" id="name">
-                                <button type="button" class="trash"></button>
-                            </span>
-                        </div>
-                        <div class="dropdownbox">
-                            <div class="dropdown">
-                                <button type="button" (click)="dropdownMenu.toggleDropdown()" class="dropbtn"
-                                    [class.active]="dropdownMenu.isDropdownOpen"></button>
-                                <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
-                                    <button type="button"
-                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Team Activities')">Team
-                                        Activities</button>
-                                    <button type="button"
-                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Health & Wellness')">Health
-                                        & Wellness</button>
-                                    <button type="button"
-                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming
-                                        &
-                                        Entertainment</button>
-                                    <button type="button"
-                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Education & Learning')">Education
-                                        &
-                                        Learning</button>
-                                    <button type="button"
-                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle
-                                        &
-                                        Preferences</button>
-                                    <button type="button"
-                                        (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology
-                                        &
-                                        Innovation</button>
-                                </div>
-                            </div>
-                            <p class="active-catergory">{{dropdownMenu.dropdownText()}}</p>
-                        </div>
-
-                    </div>
-                </div>
-                <div>
-                    
-
-                </div>
-            </div>
-        </div>
-        <div formArrayName="questions">
-            @for (question of questions.controls; track $index) {
-            <div class="questions" [formGroupName]="$index"></div>
-            }
-        </div>
-
-
-
-
-        <div class="questions">
-            <div class="questions__headline">
-                <div class="questions__headline--flex-between">
-                    <label for="question">1. Question</label>
-                    <button type="button" class="trash"></button>
-                </div>
-                <input type="text" placeholder="Which date would work best for you?">
-            </div>
-            <div>
-                <div class="answers">
-                    <label for="answers">Answers</label>
-                    <div class="more-answers">
-                        <input type="checkbox">
-                        <p class="more-answers__text">Allow muliple answers</p>
-                    </div>
-                </div>
-                <div class="answer">
-                    <label for="A">A.</label>
-                    <input id="A" type="text">
-                    <button type="button" class="trash"></button>
-                </div>
-                <div class="answer">
-                    <label for="B">B.</label>
-                    <input id="B" type="text">
-                    <button type="button" class="trash"></button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="button-box">
-        <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
-            <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
-        </button>
-    </div>
-</form>
-
-<h1>{{surveyform.get("surveyname")?.valid}}</h1> -->
