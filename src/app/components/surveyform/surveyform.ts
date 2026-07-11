@@ -19,6 +19,7 @@ export class SurveyForm implements OnInit {
   path = "";
   maxAnswer = 6;
   minAnswer = 2;
+  maxQuestion = 4;
   showAnswerLimit = false;
   answerText = "You can add up to 6 answer fields.";
 
@@ -26,10 +27,8 @@ export class SurveyForm implements OnInit {
     surveyname: new FormControl('', {
       validators: [Validators.required]
     }),
-    date: new FormControl('', {
-      validators: [Validators.required]
-    }),
-
+    date: new FormControl(''),
+    description: new FormControl(''),
     questions: new FormArray([])
   });
 
@@ -67,6 +66,14 @@ export class SurveyForm implements OnInit {
     answers.controls.forEach(answer => answer.reset(''));
   }
 
+  deleteQuestion(questionIndex: number): void {
+    if (questionIndex === 0) {
+      this.clearQuestion(questionIndex);
+      return;
+    }
+    this.removeQuestion(questionIndex);
+  }
+
   removeQuestion(index: number): void {
     this.questions.removeAt(index);
   }
@@ -91,6 +98,10 @@ export class SurveyForm implements OnInit {
     answer.push(this.createAnswer());
   }
 
+  clearAnswer(questionIndex: number, answerIndex: number): void {
+    this.getAnswers(questionIndex).at(answerIndex).reset('');
+  }
+
   showAnswerNotice(questionIndex: number): boolean {
     let answerCount = this.getAnswers(questionIndex).length;
     return answerCount >= 3 && answerCount < this.maxAnswer;
@@ -104,12 +115,17 @@ export class SurveyForm implements OnInit {
     this.getAnswers(questionIndex).removeAt(answerIndex);
   }
 
+  clearField(controlName: string): void {
+    this.surveyform.get(controlName)?.reset('')
+  }
+
   closeForm() {
     this.router.navigate([""]);
   }
 
   submit(): void {
     console.log(this.surveyform.value);
+    this.surveyform.reset();
   }
 
 }
