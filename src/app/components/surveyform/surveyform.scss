@@ -147,6 +147,13 @@ h2 {
     }
 }
 
+.optional {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Mulish';
+    line-height: 100%;
+}
+
 .trash {
     background-image: url('../../../../public/assets/img/icons/delete.png');
     width: 26px;
@@ -220,7 +227,7 @@ h2 {
 
 .questionsbox {
     width: 100%;
-    max-height: 400px;
+    height: 300px;
     overflow: auto;
 }
 
@@ -285,7 +292,7 @@ h2 {
 
     &__checkbox {
         @include mx.flex-center;
-        @include mx.gap(4px);
+        @include mx.gap;
 
         input[type="checkbox"] {
             appearance: none;
@@ -348,7 +355,6 @@ h2 {
         justify-content: space-between;
 
         &__notice {
-            font-family: '';
             font-size: 14px;
             color: #dddddd67;
         }
@@ -358,6 +364,18 @@ h2 {
         display: flex;
         justify-content: flex-end;
         margin-top: 40px;
+    }
+}
+
+.add-question-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &__notice {
+        margin-left: 8px;
+        font-size: 14px;
+        color: #dddddd67;
     }
 }
 
@@ -372,9 +390,7 @@ h2 {
         background-color: #ffffff41;
     }
 
-
-
-    .position {
+    .add {
         width: 126px;
         display: flex;
         align-items: end;
@@ -455,4 +471,11 @@ h2 {
             opacity: 0;
         }
     }
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+
 }

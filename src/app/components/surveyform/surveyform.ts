@@ -55,6 +55,9 @@ export class SurveyForm implements OnInit {
   }
 
   addQuestion(): void {
+    if (this.questions.length >= this.maxQuestion) {
+      return
+    }
     this.questions.push(this.createQuestion());
   }
 
@@ -105,6 +108,11 @@ export class SurveyForm implements OnInit {
   showAnswerNotice(questionIndex: number): boolean {
     let answerCount = this.getAnswers(questionIndex).length;
     return answerCount >= 3 && answerCount < this.maxAnswer;
+  }
+
+  showQuestionLimit(): boolean {
+    return this.questions.length >= this.maxQuestion - 2
+      && this.questions.length < this.maxQuestion;
   }
 
   canAddAnswer(questionIndex: number): boolean {
