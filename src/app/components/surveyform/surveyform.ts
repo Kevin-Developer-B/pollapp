@@ -21,6 +21,13 @@ export class SurveyForm implements OnInit {
   minAnswer = 2;
   maxQuestion = 4;
   showAnswerLimit = false;
+  isPopUp = false;
+  questionPlaceholders = [
+    'Which date would work best for you?',
+    'Choose the activities you prefer.',
+    'What time would you be available?',
+    'Which location would you choose?'
+  ];
   answerText = "You can add up to 6 answer fields.";
 
   surveyform = new FormGroup({
@@ -132,6 +139,7 @@ export class SurveyForm implements OnInit {
   }
 
   submit(): void {
+    this.isPopUp = true;
     console.log(this.surveyform.value);
     this.surveyform.reset();
   }

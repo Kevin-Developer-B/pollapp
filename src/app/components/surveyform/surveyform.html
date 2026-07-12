@@ -79,7 +79,7 @@
                             </div>
                             <button type="button" class="trash" (click)="deleteQuestion(questionIndex)"></button>
                         </div>
-                        <input type="text" formControlName="question" placeholder="Which date would work best for you?">
+                        <input type="text" formControlName="question" [placeholder]="questionPlaceholders[$index] || 'Enter your question...'">
                     </div>
                     <div class="answer">
                         <div class="answer__headline">
@@ -139,9 +139,16 @@
     </div>
     </div>
     <div class="button-box button-box--public">
-        <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
+        <button class="btn btn--primary" type="submit" [disabled]="surveyform.valid">Publish
             <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
         </button>
     </div>
 </form>
-<div class="overlay"></div>
+<div class="overlay" [class.show]="isPopUp">
+    <div class="publish">
+        <p>Your servey is now <br> published</p>
+        <button type="button" (click)="closeForm()">
+            <img src="./assets/img/icons/close_black.svg" alt="schwarzes Kreuz">
+        </button>
+    </div>
+</div>
