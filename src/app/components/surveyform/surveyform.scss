@@ -488,8 +488,8 @@ h2 {
 
 .publish {
     position: absolute;
-    right: 330px;
-    bottom: 324px;
+    right: 20px;
+    bottom: 0;
     z-index: 2;
     height: 86px;
     width: 357px;
@@ -499,8 +499,9 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    transform: translateX(280px);
-    opacity: 1;
+    transform: translateX(200px);
+    opacity: 0;
+    visibility: hidden;
     transition: transform 0.5s ease;
 
     p {
@@ -518,6 +519,8 @@ h2 {
     visibility: visible;
 }
 
-.overlay.show .publish {
+.publish.show {
+    opacity: 1;
+    visibility: visible;
     transform: translateX(0);
 }
