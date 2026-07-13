@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Service } from '../../services/service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DropdownMenu } from '../../services/dropdown_service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-survey',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './surveyform.html',
   styleUrl: './surveyform.scss'
 })
