@@ -11,7 +11,7 @@ import { Service } from '../../services/service';
   styleUrl: './home.scss',
 })
 export class Home {
-  path = ""
+  path = "";
   bgHome = inject(Service);
 
   ngOnInit() {

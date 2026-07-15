@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-feedback-and-idea',
@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './feedback-and-idea.scss',
 })
 export class FeedbackAndIdea {
-
+  routes = inject(Router);
 }

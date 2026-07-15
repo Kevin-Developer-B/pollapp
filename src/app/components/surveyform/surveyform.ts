@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Service } from '../../services/service';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DropdownMenu } from '../../services/dropdown_service';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +13,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './surveyform.scss'
 })
 export class SurveyForm implements OnInit {
+
+  myVar = "Hallo"
+
   router = inject(Router);
   dropdownMenu = inject(DropdownMenu);
   bgHome = inject(Service);
@@ -44,7 +47,7 @@ export class SurveyForm implements OnInit {
   }
 
   ngOnInit(): void {
-    let currentBg = this.bgHome.setSecondary()
+  let currentBg = this.bgHome.setSecondary()
     if (currentBg!) this.path = currentBg
     this.addQuestion();
   }

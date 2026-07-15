@@ -1,3 +1,13 @@
 <header>
-    <div [class.logo]="headerLogo.backgroundMode() == 'primary'"></div>
+    @if (thisRoute() == '/') {
+    <img src="./assets/img/pollapp_logo_orange.png" alt="logo orange">
+    }
+
+    @if (thisRoute() == '/survey') {
+    <img src="./assets/img/Logo_black.png" alt="logo schwarz">
+    <button routerLink= "form" class="btn">
+        Create survey
+        <img class="btn__chop" src="./assets/img/icons/add_circle-icon.png" alt="hinzufügen">
+    </button>
+    }
 </header>

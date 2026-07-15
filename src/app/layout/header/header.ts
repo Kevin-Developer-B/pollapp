@@ -1,12 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Service } from '../../services/service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
 export class Header {
-  headerLogo = inject(Service);
+  route = inject(Router);
+  thisRoute() {
+    return this.route.url;
+  }
 }

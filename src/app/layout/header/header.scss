@@ -1,7 +1,33 @@
-.logo {
-    background-image: url('./../../../../public/assets/img/pollapp_logo_orange.png');
-    height: 46px;
-    width: 119px;
-    background-size: contain;
-    background-repeat: no-repeat;
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn {
+    position: relative;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: 250ms ease-in-out;
+    background: #FFCFA1;
+    font-family: 'Nokora';
+    font-size: 18px;
+    font-weight: 700;
+
+    &__chop {
+        position: absolute;
+        height: auto;
+        left: 140px;
+        opacity: 0;
+        transition: opacity 250ms ease-in-out;
+    }
+
+    &:hover {
+        background-color: #FFB770;
+        padding-right: 45px;
+
+        .btn__chop {
+            opacity: 1;
+        }
+    }
 }
