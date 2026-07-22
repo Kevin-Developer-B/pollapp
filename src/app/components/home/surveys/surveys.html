@@ -3,15 +3,10 @@
     <div class="surveys">
         <h3>Ending soon surveys</h3>
         <div class="cardbox">
-            @for(item of cardlist; track item) {
-            <button class="card">
-                <span>
-                    <p class="card__category">{{item.catergory}}</p>
-                    <h4>{{item.text}}</h4>
-                </span>
-                <p class="card__day">Ends in {{item.day}} Day</p>
-            </button>
-            }
+            <h3 style="color: azure;">{{databank.surveys() | json}}</h3>
         </div>
     </div>
+    
+    
+
 </section>

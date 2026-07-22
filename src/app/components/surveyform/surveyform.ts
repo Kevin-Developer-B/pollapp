@@ -4,6 +4,7 @@ import { Service } from '../../services/service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DropdownMenu } from '../../services/dropdown_service';
 import { CommonModule } from '@angular/common';
+import { Supabase } from '../../services/supabase';
 
 @Component({
   selector: 'app-survey',
@@ -13,9 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './surveyform.scss'
 })
 export class SurveyForm implements OnInit {
-
-  myVar = "Hallo"
-
+  databank = inject(Supabase);
   router = inject(Router);
   dropdownMenu = inject(DropdownMenu);
   bgHome = inject(Service);
@@ -145,6 +144,8 @@ export class SurveyForm implements OnInit {
     this.isPopUp = true;
     console.log(this.surveyform.value);
     this.surveyform.reset();
+    this.databank.setSurvey(
+      {name: "Wie gehts", date: 22});
   }
 
 }

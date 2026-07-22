@@ -1,27 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Supabase } from '../../../services/supabase';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-surveys',
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './surveys.html',
   styleUrl: './surveys.scss',
 })
 export class Surveys {
-  cardlist = [
-    {
-      catergory: "Team activities",
-      text: "Let’s Plan the Next Team Event Together",
-      day: "1"
-    },
-    {
-      catergory: "Health & Wellness",
-      text: "Fit & wellness survey!",
-      day: "2"
-    },
-    {
-      catergory: "Gaming & Entertainment",
-      text: "Gaming habits and favorite games!",
-      day: "3"
-    },
-  ]
+  databank = inject(Supabase)
+
+  ngOnInit() {
+    this.databank.getSurveys();
+  }
 }
