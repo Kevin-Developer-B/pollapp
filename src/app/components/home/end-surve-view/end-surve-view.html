@@ -2,11 +2,10 @@
     <h2>Your surveys</h2>
     <div class="surveys">
         <h3>Ending soon surveys</h3>
+        @for (item of list(); track item) {
         <div class="cardbox">
-            <h3 style="color: azure;">{{databank.surveys() | json}}</h3>
+            <h3 style="color: azure;">{{ item.surveyname }}</h3>
         </div>
+        }
     </div>
-    
-    
-
 </section>

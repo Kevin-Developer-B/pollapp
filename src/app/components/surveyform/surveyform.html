@@ -33,25 +33,26 @@
                                 [class.active]="dropdownMenu.isDropdownOpen"></button>
                             <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
                                 <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Team Activities')">Team
+                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Team Activities'); dropdownMenu.dropdownText.set('Team Activities')">Team
                                     Activities</button>
                                 <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Health & Wellness')">Health
+                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Health & Wellness'); dropdownMenu.dropdownText.set('Health & Wellness')">Health
                                     & Wellness</button>
                                 <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming
+                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Gaming & Entertainment'); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming
                                     &
                                     Entertainment</button>
                                 <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Education & Learning')">Education
+                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Education & Learning'); dropdownMenu.dropdownText.set('Education & Learning')">Education
                                     &
                                     Learning</button>
                                 <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle
+                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Lifestyle & Preferences'); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle
                                     &
                                     Preferences</button>
+
                                 <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology
+                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Technology & Innovation'); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology
                                     &
                                     Innovation</button>
                             </div>
@@ -141,7 +142,7 @@
     </div>
     <div class="overlay" [class.show]="isPopUp"></div>
     <div class="button-box button-box--public">
-        <button class="btn btn--primary" type="submit" [disabled]="surveyform.valid">Publish
+        <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
             <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
         </button>
         <div class="publish" [class.show]="isPopUp">

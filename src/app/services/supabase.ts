@@ -7,20 +7,22 @@ import { createClient } from '@supabase/supabase-js'
 export class Supabase {
   supabase = createClient('https://jhjioktzlzlmjvsbxeva.supabase.co', 'sb_publishable_NbL2wcqTG9MyJe-iAQgzLw_zfmvt9Ix')
 
-  surveys = signal<{ id: number, created_at: string, name: string }[]>([]);
+  // surveys = signal<Survey[]>([]);
 
-  async getSurveys() {
-    let { data: survey, error } = await this.supabase
-      .from('survey')
-      .select('*')
-    if (!survey) return
-    this.surveys.set(survey)
-  }
+  // async getSurveys() {
+  //   let { data: survey, error } = await this.supabase
+  //     .from('survey')
+  //     .select('name')
+  //     // .range ( 0 , 2 )​
+  //     // .lte ( 'date' , '3' )
+  //   if (!survey) return
+  //   this.surveys.set(survey)
+  // }
 
-  async setSurvey(survey: {name: string, date:number}) {
-    let { data, error } = await this.supabase
-      .from('survey')
-      .insert([survey])
-      .select()
-  }
+  // async setSurvey(survey: Survey) {
+  //   let { data, error } = await this.supabase
+  //     .from('survey')
+  //     .insert([survey])
+  //     .select()
+  // }
 }

@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FeedbackAndIdea } from './feedback-and-idea/feedback-and-idea';
-import { Surveys } from './surveys/surveys';
 import { Surveyslist } from './surveyslist/surveyslist';
 import { Service } from '../../services/service';
+import { EndSurveView } from "./end-surve-view/end-surve-view";
 
 @Component({
   selector: 'app-home',
-  imports: [FeedbackAndIdea, Surveys, Surveyslist],
+  imports: [FeedbackAndIdea, Surveyslist, EndSurveView],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

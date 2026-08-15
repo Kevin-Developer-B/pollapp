@@ -1,10 +1,13 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { Supabase } from './supabase';
+import { Survey } from '../components/survey/survey';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Service {
   backgroundMode = signal<'primary' | 'secondary'>('primary');
+  supabase = inject(Supabase)
 
   setPrimary() {
     this.backgroundMode.set('primary');
@@ -16,5 +19,16 @@ export class Service {
     this.backgroundMode.set('secondary');
     document.body.classList.remove('body--primary');
     document.body.classList.add('body--secondary');
+  }
+
+  async addSurvey(survey: Survey) {
+    console.log();
+    
+    // const { data, error } = await this.supabase
+    //   .from('survey')
+    //   .insert([
+    //     { some_column: 'someValue', other_column: 'otherValue' },
+    //   ])
+    //   .select()
   }
 }
