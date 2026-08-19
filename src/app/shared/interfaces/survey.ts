@@ -5,17 +5,17 @@ export interface Survey {
     date: string;
     category: string;
     description: string;
-    question: Question[];
+    questions: Question[];
 }
 
 export interface Question {
-    text: string;
+    question: string;
     multipleAnswers: boolean;
-    Answers: string[];
+    answers: string[];
 }
 
-export interface QuestionForm {
-  question: FormControl<string | null>;
-  multipleAnswers: FormControl<boolean | null>;
-  answers: FormArray<FormControl<string |null>>;
-}
+// export interface QuestionForm {
+//   question: FormControl<string | null>;
+//   multipleAnswers: FormControl<boolean | null>;
+//   answers: FormArray<FormControl<string |null>>;
+// }

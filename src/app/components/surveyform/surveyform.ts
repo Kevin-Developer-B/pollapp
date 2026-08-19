@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { Supabase } from '../../services/supabase';
 import { Surveys } from '../../shared/services/surveys';
 import { SurveyModel } from '../../shared/models/survey-model';
-import { QuestionForm } from '../../shared/interfaces/survey';
+// import { QuestionForm } from '../../shared/interfaces/survey';
 
 @Component({
   selector: 'app-survey',
@@ -41,7 +41,7 @@ export class SurveyForm implements OnInit {
     date: new FormControl('', { nonNullable: true }),
     category: new FormControl('', { nonNullable: true }),
     description: new FormControl('', { nonNullable: true }),
-    questions: new FormArray<FormGroup<QuestionForm>>([])
+    questions: new FormArray<FormGroup>([])
   });
 
   get questions(): FormArray {
@@ -52,15 +52,22 @@ export class SurveyForm implements OnInit {
     let currentBg = this.service.setSecondary()
     if (currentBg!) this.path = currentBg
     this.addQuestion();
+    // this.surveyService.deleteSurvey(1);
   }
 
-  private createQuestion(): FormGroup<QuestionForm> {
-    return new FormGroup<QuestionForm>({
-      question: new FormControl('', { validators: [Validators.required] }),
+
+  addQuestion(): void {
+    if (this.questions.length >= this.maxQuestion) return
+    this.questions.push(this.createQuestion());
+  } 
+
+  private createQuestion(): FormGroup {
+    return new FormGroup({
+      question: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
       multipleAnswers: new FormControl(false),
       answers: new FormArray<FormControl<string | null>>([
-        new FormControl('', { validators: Validators.required }),
-        new FormControl('', { validators: Validators.required })
+        new FormControl('', { nonNullable: true, validators: Validators.required }),
+        new FormControl('', { nonNullable: true, validators: Validators.required })
       ])
     });
   }
@@ -68,11 +75,6 @@ export class SurveyForm implements OnInit {
   selectCategory(category: string) {
     this.dropdownMenu.dropdownText.set(category);
     this.surveyform.get('category')?.setValue(category);
-  }
-
-  addQuestion(): void {
-    if (this.questions.length >= this.maxQuestion) return
-    this.questions.push(this.createQuestion());
   }
 
   clearQuestion(questionIndex: number): void {
@@ -141,13 +143,11 @@ export class SurveyForm implements OnInit {
 
   submit(): void {
     if (this.surveyform.valid) {
-      console.log(this.surveyform.value);
-      let survey = new SurveyModel(this.surveyform.value);
-      // this.surveyService.addSurvey(survey)
+      let survey = new SurveyModel(this.surveyform.value)
+      this.surveyService.addSurvey(survey);
       this.isPopUp = true;
       this.surveyform.reset();
       this.dropdownMenu.dropdownText.set("");
     }
   }
-
 }

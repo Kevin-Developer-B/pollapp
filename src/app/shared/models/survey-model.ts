@@ -1,26 +1,27 @@
-import { Question, Survey } from "../interfaces/survey";
+import { Survey, Question } from "../interfaces/survey";
 
-export class SurveyModel implements Survey, Question {
+export class SurveyModel implements Survey{
     surveyname: string;
     date: string;
     category: string;
     description: string;
-    question: Question[];
-   
-    text: string;
-    multipleAnswers: boolean;
-    Answers: string[];
+    questions: Question[];
 
-    constructor(data: Partial<Survey & Question> = {}) {
+    constructor(data: Partial<Survey> = {}) {
         this.surveyname = data.surveyname ?? "";
         this.date = data.date ?? "";
         this.category = data.category ?? "";
         this.description = data.description ?? "";
-        this.question = data.question ?? [];
+        this.questions = data.questions ?? [];
+    }
 
-        this.text = data.text ?? "";
-        this.multipleAnswers = data.multipleAnswers ?? false;
-        this.Answers = data.Answers ?? [];
-
+    getCleanAddJson() {
+        return {
+            surveyname: this.surveyname,
+            date: this.date,
+            category: this.category,
+            description: this.description,
+            questions: this.questions,
+        }
     }
 }
