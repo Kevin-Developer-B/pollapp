@@ -1,2 +1,61 @@
-<p>survey works!</p>
-<h1>{{ userId }}</h1>
+<main>
+    <section>
+        <p class="status">Published</p>
+        <!-- published in die datenbank hinzufügen -->
+        <div class="survey-container">
+            @for (survey of list(); track $index) {
+            <div class="survey-box">
+                <div class="survey-headline-box">
+                    <div class="date-category-box">
+                        <p class="date-category-box--font">
+                            Ends on {{ survey.date }}
+                        </p>
+                        <p class="date-category-box--font">
+                            Category: {{ survey.category }}
+                        </p>
+                    </div>
+                    <h2>
+                        {{ survey.surveyname }}
+                    </h2>
+                    <p class="description">
+                        {{ survey.description }}
+                    </p>
+                </div>
+
+                <div class="questions-container">
+                    <ol>
+                        @for (question of survey.questions; track $index;) {
+                        <li>
+                            <div class="question-box">
+                                <div class="question-box__text">
+                                    <h3>
+                                        {{ question.question }}
+                                    </h3>
+                                    <p>{{ question.multipleAnswers }}</p>
+                                </div>
+                                <div class="answers-container">
+                                    <ol>
+                                        @for (answer of question.answers; track $index) {
+                                        <li class="answer-item">
+                                            <input type="checkbox" name="answer-{{ $index }}" value="{{ answer }}">
+                                            <div>
+                                                <span class="marker">{{ toLetter($index) }}.</span>
+                                                <span class="text">{{ answer }}</span>
+                                            </div>
+                                        </li>
+                                        }
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </li>
+                        }
+                    </ol>
+                </div>
+            </div>
+            }
+            <button>Complete survey</button>
+        </div>
+    </section>
+    <aside></aside>
+</main>

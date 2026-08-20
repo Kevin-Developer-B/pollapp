@@ -15,10 +15,10 @@ export class Surveys {
       .from('survey')
       .select('*')
     this.surveyslist.set((response.data ?? []) as Survey[])
+    console.log(response.data);
   }
 
   async addSurvey(survey: SurveyModel) {
-    // console.log(survey.getCleanAddJson());
     const survey_data = survey.getCleanAddJson();
     const { data, error } = await this.db.supabase
       .from('survey')
