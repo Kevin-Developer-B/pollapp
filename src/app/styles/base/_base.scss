@@ -65,3 +65,20 @@ button {
         }
     }
 }
+
+.complet-survey-btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    background-color: #FFB7704D;
+
+    &:hover {
+        background-color: #FFCFA1;
+    }
+
+    &__text {
+        font-family: 'Nokora';
+        font-size: 16px;
+        font-weight: 700;
+        color: #35273A;
+    }
+}

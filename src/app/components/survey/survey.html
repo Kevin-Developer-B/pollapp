@@ -1,9 +1,9 @@
 <main>
+    @for (survey of list(); track $index) {
     <section>
         <p class="status">Published</p>
         <!-- published in die datenbank hinzufügen -->
         <div class="survey-container">
-            @for (survey of list(); track $index) {
             <div class="survey-box">
                 <div class="survey-headline-box">
                     <div class="date-category-box">
@@ -31,17 +31,21 @@
                                     <h3>
                                         {{ question.question }}
                                     </h3>
-                                    <p>{{ question.multipleAnswers }}</p>
+                                    @if (question.multipleAnswers == true) {
+                                    <p class="muliple-answers-text">{{ "More than on answers are possible" }}</p>
+                                    }
                                 </div>
                                 <div class="answers-container">
                                     <ol>
                                         @for (answer of question.answers; track $index) {
                                         <li class="answer-item">
-                                            <input type="checkbox" name="answer-{{ $index }}" value="{{ answer }}">
-                                            <div>
-                                                <span class="marker">{{ toLetter($index) }}.</span>
-                                                <span class="text">{{ answer }}</span>
-                                            </div>
+                                            <label>
+                                                <input type="checkbox" name="answer-{{ $index }}" value="{{ answer }}">
+                                                <div>
+                                                    <span class="marker">{{ toLetter($index) }}.</span>
+                                                    <span class="text">{{ answer }}</span>
+                                                </div>
+                                            </label>
                                         </li>
                                         }
                                     </ol>
@@ -53,9 +57,18 @@
                     </ol>
                 </div>
             </div>
-            }
-            <button>Complete survey</button>
+            <button class="complet-survey-btn">
+                <p class="complet-survey-btn__text">Complete survey</p>
+            </button>
         </div>
     </section>
-    <aside></aside>
+    <aside>
+        <h2>Survey results <span>LIVE</span></h2>
+        <div>
+            @for (question of survey.questions; track $index;) {
+            <h3>{{$index + 1}}.{{ question.question }}</h3>
+            }
+        </div>
+    </aside>
+    }
 </main>

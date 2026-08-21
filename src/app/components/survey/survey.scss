@@ -16,6 +16,7 @@ section {
     background-color: #8E70991A;
     border-top-right-radius: 160px;
     padding: 40px;
+    cursor: default;
 
     .status {
         height: 26px;
@@ -68,7 +69,9 @@ section {
 
 .questions-container {
     height: 463px;
+    max-height: 463px;
     width: 622px;
+    overflow-y: auto;
     display: grid;
     grid-template-columns: auto auto;
     @include mx.gap(24px);
@@ -104,12 +107,18 @@ section {
             font-weight: 700;
         }
     }
+
+    .muliple-answers-text {
+        margin-top: 3px;
+        font-size: 14px;
+        line-height: 100%;
+    }
 }
 
 .answers-container {
     @include mx.flex-column;
     @include mx.gap;
-    margin-left: -8px;
+    margin-left: -20px;
 
     & ol {
         margin: 0;
@@ -124,9 +133,54 @@ section {
 }
 
 .answer-item {
-    display: flex;
-    align-items: start;
-    gap: 8px;
+
+
+
+    &:hover {
+        background-color: #ffb77079;
+        border-radius: 3px;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 2px 5px;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        padding: 0;
+        height: 15px;
+        width: 15px;
+        border: 1.5px solid #35273A;
+        border-radius: 3px;
+
+        display: grid;
+        place-content: center;
+
+        &::before {
+            content: "";
+            height: 15px;
+            width: 15px;
+            transform: scale(0);
+            background-image: url("./../../../../public/assets/img/icons/check.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 15px;
+            background-color: #EE9236;
+            border-radius: 3px;
+        }
+
+        &:checked::before {
+            transform: scale(1);
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
     .marker {
         font-weight: 600;
@@ -138,18 +192,13 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
 aside {
     height: 855px;
+    max-height: 855px;
     width: 315px;
+    overflow-y: auto;
+    @include mx.flex-column;
+    justify-content: end;
+    padding-bottom: 3px;
     background-color: rgba(0, 255, 255, 0.253);
 }
