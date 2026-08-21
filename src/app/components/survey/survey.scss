@@ -198,7 +198,80 @@ aside {
     width: 315px;
     overflow-y: auto;
     @include mx.flex-column;
+    @include mx.gap(16px);
     justify-content: end;
     padding-bottom: 3px;
-    background-color: rgba(0, 255, 255, 0.253);
+    cursor: default;
+
+    h2 {
+        font-family: 'NerkoOne';
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 100%;
+
+        .live {
+            color: #FFB770;
+        }
+    }
+
+    .survey-results-container {
+        @include mx.flex-column;
+        gap: 24px;
+    }
+}
+
+.question-results-container {
+    .question {
+        display: flex;
+        gap: 8px;
+        font-weight: 700;
+        padding-left: 8px;
+        line-height: 100%;
+
+        h3 {
+            font-size: 18px;
+            
+            margin-bottom: 16px;
+        }
+    }
+}
+
+.result-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+
+    .letter {
+        width: 16px;
+        font-weight: 700;
+    }
+
+    .bar {
+        width: 100%;
+        background-color: #EDEDED;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+
+        .result {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            text-align: center;
+        }
+
+        .test {
+            width: 80%;
+            background-color: #FFB770;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    }
+
+    .percent {
+        font-weight: 800;
+        color: #D79451;
+        line-height: 100%;
+        font-size: 14px;
+        text-align: end;
+    }
 }

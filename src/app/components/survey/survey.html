@@ -63,10 +63,24 @@
         </div>
     </section>
     <aside>
-        <h2>Survey results <span>LIVE</span></h2>
-        <div>
+        <h2>Survey results <span class="live">LIVE</span></h2>
+        <div class="survey-results-container">
             @for (question of survey.questions; track $index;) {
-            <h3>{{$index + 1}}.{{ question.question }}</h3>
+            <div class="question-results-container">
+                <div class="question">
+                    <p>{{$index + 1}}.</p>
+                    <h3>{{ question.question }}</h3>
+                </div>
+                @for (answer of question.answers; track $index) {
+                <div class="result-box">
+                    <p class="letter">{{ toLetter($index) }}</p>
+                    <div class="bar">
+                        <div class="result test"></div>
+                    </div>
+                    <span class="percent">80%</span>
+                </div>
+                }
+            </div>
             }
         </div>
     </aside>
