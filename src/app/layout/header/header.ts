@@ -1,5 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
-import { Service } from '../../services/service';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -9,8 +8,14 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './header.scss',
 })
 export class Header {
-  route = inject(Router);
+  router = inject(Router);
+
+  ngOninit() {
+    console.warn(this.router);
+    
+  }
+
   thisRoute() {
-    return this.route.url;
+    return this.router.url;
   }
 }

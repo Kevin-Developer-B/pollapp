@@ -1,6 +1,7 @@
 import { Survey, Question } from "../interfaces/survey";
 
 export class SurveyModel implements Survey{
+    id: number;
     surveyname: string;
     date: string;
     category: string;
@@ -8,6 +9,7 @@ export class SurveyModel implements Survey{
     questions: Question[];
 
     constructor(data: Partial<Survey> = {}) {
+        this.id = data.id ?? 0;
         this.surveyname = data.surveyname ?? "";
         this.date = data.date ?? "";
         this.category = data.category ?? "";

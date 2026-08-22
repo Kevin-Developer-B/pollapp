@@ -147,9 +147,11 @@
         </button>
         <div class="publish" [class.show]="isPopUp">
             <p>Your servey is now <br> published</p>
-            <a routerLink="/survey">
+            @for (item of surveyService.surveyslist(); track item.id) {
+            <a [routerLink]="['/survey', item.id]">
                 <img src="./assets/img/icons/close_black.svg" alt="schwarzes Kreuz">
             </a>
+            }
         </div>
     </div>
 </form>

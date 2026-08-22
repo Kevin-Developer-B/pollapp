@@ -1,8 +1,6 @@
 <main>
-    @for (survey of list(); track $index) {
     <section>
         <p class="status">Published</p>
-        <!-- published in die datenbank hinzufügen -->
         <div class="survey-container">
             <div class="survey-box">
                 <div class="survey-headline-box">
@@ -24,23 +22,26 @@
 
                 <div class="questions-container">
                     <ol>
-                        @for (question of survey.questions; track $index;) {
+                        @for (item of survey.questions; track $index) {
                         <li>
                             <div class="question-box">
                                 <div class="question-box__text">
                                     <h3>
-                                        {{ question.question }}
+                                        {{item.question}}
                                     </h3>
-                                    @if (question.multipleAnswers == true) {
-                                    <p class="muliple-answers-text">{{ "More than on answers are possible" }}</p>
-                                    }
+                                    <p class="muliple-answers-text">
+                                        @if(item.multipleAnswers == true) {
+                                            {{ "More than on answers are possible" }}
+                                        }
+                                    </p>
                                 </div>
                                 <div class="answers-container">
                                     <ol>
-                                        @for (answer of question.answers; track $index) {
+                                        @for (answer of item.answers; track $index) {
                                         <li class="answer-item">
                                             <label>
-                                                <input type="checkbox" name="answer-{{ $index }}" value="{{ answer }}">
+                                                <input type="checkbox" name="answer-{{ $index }}"
+                                                    value="answer-{{ $index }}">
                                                 <div>
                                                     <span class="marker">{{ toLetter($index) }}.</span>
                                                     <span class="text">{{ answer }}</span>
@@ -57,7 +58,7 @@
                     </ol>
                 </div>
             </div>
-            <button class="complet-survey-btn">
+            <button class="complet-survey-btn" (click)="updateSurveyDetail()">
                 <p class="complet-survey-btn__text">Complete survey</p>
             </button>
         </div>
@@ -65,24 +66,19 @@
     <aside>
         <h2>Survey results <span class="live">LIVE</span></h2>
         <div class="survey-results-container">
-            @for (question of survey.questions; track $index;) {
             <div class="question-results-container">
                 <div class="question">
-                    <p>{{$index + 1}}.</p>
-                    <h3>{{ question.question }}</h3>
+                    <p></p>
+                    <h3></h3>
                 </div>
-                @for (answer of question.answers; track $index) {
                 <div class="result-box">
-                    <p class="letter">{{ toLetter($index) }}</p>
+                    <p class="letter"></p>
                     <div class="bar">
                         <div class="result test"></div>
                     </div>
                     <span class="percent">80%</span>
                 </div>
-                }
             </div>
-            }
         </div>
     </aside>
-    }
 </main>
