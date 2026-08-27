@@ -10,5 +10,8 @@ export interface Survey {
 export interface Question {
     question: string;
     multipleAnswers: boolean;
-    answers: string[];
+    answers: {
+        answer: string;
+        vote: number;
+    }[];
 }

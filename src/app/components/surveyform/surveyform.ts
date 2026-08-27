@@ -59,15 +59,22 @@ export class SurveyForm implements OnInit {
   addQuestion(): void {
     if (this.questions.length >= this.maxQuestion) return
     this.questions.push(this.createQuestion());
-  } 
+  }
 
   private createQuestion(): FormGroup {
     return new FormGroup({
       question: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
       multipleAnswers: new FormControl(false),
-      answers: new FormArray<FormControl<string | null>>([
-        new FormControl('', { nonNullable: true, validators: Validators.required }),
-        new FormControl('', { nonNullable: true, validators: Validators.required })
+
+      answers: new FormArray<FormGroup>([
+        new FormGroup({
+          answer: new FormControl('', { nonNullable: true, validators: Validators.required }),
+          vote: new FormControl(0, { nonNullable: true })
+        }),
+        new FormGroup({
+          answer: new FormControl('', { nonNullable: true, validators: Validators.required }),
+          vote: new FormControl(0, { nonNullable: true })
+        })
       ])
     });
   }
@@ -108,11 +115,18 @@ export class SurveyForm implements OnInit {
   addAnswer(questionIndex: number): void {
     let answers = this.getAnswers(questionIndex);
     if (answers.length >= this.maxAnswer) return
-    answers.push(new FormControl('', { validators: Validators.required }));
+    answers.push(
+      new FormGroup({
+        answer: new FormControl('', { nonNullable: true, validators: Validators.required }),
+        vote: new FormControl(0, { nonNullable: true })
+      })
+    );
   }
 
   clearAnswer(questionIndex: number, answerIndex: number): void {
-    this.getAnswers(questionIndex).at(answerIndex).reset('');
+    let group = this.getAnswers(questionIndex).at(answerIndex) as FormGroup;
+    group.get('answer')?.setValue('');
+    group.get('vote')?.setValue(0);;
   }
 
   showAnswerNotice(questionIndex: number): boolean {

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Surveys } from '../../shared/services/surveys';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +10,18 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Header {
   router = inject(Router);
+  route = inject(ActivatedRoute)
+  surveyService = inject(Surveys)
 
-  ngOninit() {
-    console.warn(this.router);
-    
+  ngOnInit() {
   }
+
 
   thisRoute() {
     return this.router.url;
   }
+
+  isSurveyRoute() {
+  return this.router.url.startsWith('/survey/');
+}
 }

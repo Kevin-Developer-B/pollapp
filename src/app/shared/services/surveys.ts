@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, Signal, signal } from '@angular/core';
 import { Question, Survey } from '../interfaces/survey';
 import { Supabase } from '../../services/supabase';
 import { SurveyModel } from '../models/survey-model';
@@ -11,21 +11,23 @@ export class Surveys {
 
   surveyslist = signal<Survey[]>([]);
 
-  surveydetail: Survey = {
+  surveydetail = signal<Survey>({
+
     "id": 0,
     "surveyname": "n/a",
     "date": "n/a",
     "category": "n/a",
     "description": "n/a",
     "questions": [] as Question[],
-  }
+
+  })
 
   surveylistInsertChannel;
   surveylistUpdateChannel;
 
-  setSurveyDetailByName(name: string) {
-    let tmpSurvey = this.surveyslist().find(survey => survey.surveyname == name);
-    if (tmpSurvey) this.surveydetail = tmpSurvey;
+  setSurveyDetailById(id: number) {
+    let tmpSurvey = this.surveyslist().find(survey => survey.id == id);
+    if (tmpSurvey) this.surveydetail.set(tmpSurvey);
   }
 
   constructor() {

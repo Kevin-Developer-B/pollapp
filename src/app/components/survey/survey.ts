@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Surveys } from '../../shared/services/surveys';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Service } from '../../services/service';
 import { Question } from '../../shared/interfaces/survey';
 
 @Component({
@@ -11,34 +12,45 @@ import { Question } from '../../shared/interfaces/survey';
 })
 export class Survey {
   surveyService = inject(Surveys)
+  service = inject(Service)
+  path = ""
   router = inject(Router);
   route = inject(ActivatedRoute);
   surveys = this.surveyService.surveyslist;
-  // detail = this.surveyService.surveyDetail;
+  detail = this.surveyService.surveydetail;
 
   ngOnInit() {
-    let currentName = this.route.snapshot.paramMap.get('surveyname');
-    if(currentName) this.surveyService.setSurveyDetailByName(currentName);
-    this.survey = this.surveyService.surveydetail
+    let currentBg = this.service.setSecondary()
+    if (currentBg!) this.path = currentBg
+
+    let currentId = Number(this.route.snapshot.paramMap.get('id'));
+    if (currentId) this.surveyService.setSurveyDetailById(currentId);
   }
 
-  survey = {
-    "id": 0,
-    "surveyname": "n/a",
-    "date": "n/a",
-    "category": "n/a",
-    "description": "n/a",
-    "questions": [] as Question[],
-  }
+  survey = this.surveyService.surveydetail;
 
   toLetter(index: number): string {
     return String.fromCharCode(65 + index);
   }
 
+  hasVotes(): boolean {
+    return this.survey().questions.some(q =>
+      q.answers.some(a => a.vote > 0)
+    );
+  }
 
+  onVote(question: Question, index: number) {
+    question.answers[index].vote += 1;
+  }
+
+  getPercent(question: Question, index: number): number {
+    const total = question.answers.reduce((sum, a) => sum + a.vote, 0);
+    if (total === 0) return 0;
+    return Math.round((question.answers[index].vote / total) * 100);
+  }
 
   async updateSurveyDetail() {
-    // this.surveyService.updateSurvey(this.detail.id)
+    this.surveyService.updateSurvey(this.survey().id);
     this.router.navigate([""]);
   }
 }

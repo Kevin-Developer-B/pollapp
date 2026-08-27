@@ -1,5 +1,9 @@
 @use '../../styles/abstracts/mixin' as mx;
 
+body {
+    background-color: aqua;
+}
+
 main {
     display: flex;
     @include mx.gap(42px);
@@ -220,6 +224,20 @@ aside {
     }
 }
 
+.no-result-box {
+    height: 214px;
+    @include mx.flex-column;
+    @include mx.gap(146px);
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+}
+
+.empty-space {
+    height: 400px;
+}
+
 .question-results-container {
     .question {
         display: flex;
@@ -230,7 +248,7 @@ aside {
 
         h3 {
             font-size: 18px;
-            
+
             margin-bottom: 16px;
         }
     }

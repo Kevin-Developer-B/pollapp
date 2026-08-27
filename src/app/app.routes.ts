@@ -6,5 +6,6 @@ import { Survey } from './components/survey/survey';
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'form', component: SurveyForm },
-    { path: 'survey/:surveyname', component: Survey },
+    // { path: 'survey', component: Survey },
+    { path: 'survey/:id', component: Survey },
 ];

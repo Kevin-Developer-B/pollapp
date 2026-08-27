@@ -6,23 +6,23 @@
                 <div class="survey-headline-box">
                     <div class="date-category-box">
                         <p class="date-category-box--font">
-                            Ends on {{ survey.date }}
+                            Ends on {{ survey().date }}
                         </p>
                         <p class="date-category-box--font">
-                            Category: {{ survey.category }}
+                            Category: {{ survey().category }}
                         </p>
                     </div>
                     <h2>
-                        {{ survey.surveyname }}
+                        {{ survey().surveyname }}
                     </h2>
                     <p class="description">
-                        {{ survey.description }}
+                        {{ survey().description }}
                     </p>
                 </div>
 
                 <div class="questions-container">
                     <ol>
-                        @for (item of survey.questions; track $index) {
+                        @for (item of survey().questions; track $index) {
                         <li>
                             <div class="question-box">
                                 <div class="question-box__text">
@@ -31,20 +31,20 @@
                                     </h3>
                                     <p class="muliple-answers-text">
                                         @if(item.multipleAnswers == true) {
-                                            {{ "More than on answers are possible" }}
+                                        {{ "More than on answers are possible" }}
                                         }
                                     </p>
                                 </div>
                                 <div class="answers-container">
                                     <ol>
-                                        @for (answer of item.answers; track $index) {
+                                        @for (answers of item.answers; track $index) {
                                         <li class="answer-item">
                                             <label>
                                                 <input type="checkbox" name="answer-{{ $index }}"
-                                                    value="answer-{{ $index }}">
+                                                    (change)="onVote(item, $index)">
                                                 <div>
                                                     <span class="marker">{{ toLetter($index) }}.</span>
-                                                    <span class="text">{{ answer }}</span>
+                                                    <span class="text">{{ answers.answer }}</span>
                                                 </div>
                                             </label>
                                         </li>
@@ -66,19 +66,31 @@
     <aside>
         <h2>Survey results <span class="live">LIVE</span></h2>
         <div class="survey-results-container">
+            @if (!hasVotes()) {
+            <div class="no-result-box">
+                <p>Results will be shown here after participants complete the survey.</p>
+                <p style="text-align: center;">There are no answers yet.</p>
+            </div>
+            <span class="empty-space"></span>
+            } @else {
+            @for (item of survey().questions; track $index) {
             <div class="question-results-container">
                 <div class="question">
-                    <p></p>
-                    <h3></h3>
+                    <p>{{ $index + 1 }}.</p>
+                    <h3>{{ item.question }}</h3>
                 </div>
+                @for (answers of item.answers; track $index) {
                 <div class="result-box">
-                    <p class="letter"></p>
+                    <p class="letter">{{ toLetter($index) }}</p>
                     <div class="bar">
-                        <div class="result test"></div>
+                        <div class="result test" [style.width.%]="getPercent(item, $index)"></div>
                     </div>
-                    <span class="percent">80%</span>
+                    <span class="percent">{{ getPercent(item, $index) }}%</span>
                 </div>
+                }
             </div>
+            }
+            }
         </div>
     </aside>
 </main>
