@@ -41,7 +41,8 @@
                                         <li class="answer-item">
                                             <label>
                                                 <input type="checkbox" name="answer-{{ $index }}"
-                                                    (change)="onVote(item, $index)">
+                                                    (change)="onSelected(item, $index, $event)"
+                                                    [checked]="answers.selected" [class.active]="answers.selected">
                                                 <div>
                                                     <span class="marker">{{ toLetter($index) }}.</span>
                                                     <span class="text">{{ answers.answer }}</span>
@@ -66,30 +67,27 @@
     <aside>
         <h2>Survey results <span class="live">LIVE</span></h2>
         <div class="survey-results-container">
-            @if (!hasVotes()) {
-            <div class="no-result-box">
+            <div class="no-result-box" [hidden]="hasResults()">
                 <p>Results will be shown here after participants complete the survey.</p>
                 <p style="text-align: center;">There are no answers yet.</p>
             </div>
             <span class="empty-space"></span>
-            } @else {
-            @for (item of survey().questions; track $index) {
-            <div class="question-results-container">
+            @for (item of liveSurvey.questions; let qIndex = $index; track $index) {
+            <div class="question-results-container" [hidden]="!hasResults()">
                 <div class="question">
                     <p>{{ $index + 1 }}.</p>
                     <h3>{{ item.question }}</h3>
                 </div>
-                @for (answers of item.answers; track $index) {
+                @for (answers of item.answers; let aIndex = $index; track $index) {
                 <div class="result-box">
                     <p class="letter">{{ toLetter($index) }}</p>
                     <div class="bar">
-                        <div class="result test" [style.width.%]="getPercent(item, $index)"></div>
+                        <div class="result test" [style.width.%]="getPercent(qIndex, aIndex)"></div>
                     </div>
-                    <span class="percent">{{ getPercent(item, $index) }}%</span>
+                    <span class="percent">{{ getPercent(qIndex, aIndex) }}%</span>
                 </div>
                 }
             </div>
-            }
             }
         </div>
     </aside>

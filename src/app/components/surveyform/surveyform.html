@@ -99,7 +99,7 @@
                                 </label>
                                 <div [formGroupName]="answerIndex" style="display: contents;">
                                     <input type="text" formControlName="answer">
-                                    <input type="number" formControlName="vote" hidden>
+                                    <input type="number" formControlName="selected" hidden>
                                 </div>
                                 <button class="trash" type="button"
                                     (click)="answerIndex < minAnswer ? clearAnswer(questionIndex, answerIndex) : removeAnswer(questionIndex, answerIndex)"></button>

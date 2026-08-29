@@ -10,16 +10,13 @@ export class Surveys {
   db = inject(Supabase)
 
   surveyslist = signal<Survey[]>([]);
-
   surveydetail = signal<Survey>({
-
     "id": 0,
     "surveyname": "n/a",
     "date": "n/a",
     "category": "n/a",
     "description": "n/a",
     "questions": [] as Question[],
-
   })
 
   surveylistInsertChannel;
@@ -58,7 +55,7 @@ export class Surveys {
     let response = await this.db.supabase
       .from('survey')
       .select('*')
-    this.surveyslist.set((response.data ?? []) as Survey[])
+    this.surveyslist.set((response.data ?? []) as Survey[]);
   }
 
   async addSurvey(survey: SurveyModel) {
@@ -71,11 +68,11 @@ export class Surveys {
       .select()
   }
 
-  async updateSurvey(id: number) {
-    const { data, error } = await this.db.supabase
+  async updateSurvey(survey: Survey) {
+    await this.db.supabase
       .from('survey')
-      .update({ other_column: 'otherValue' })
-      .eq('id', id)
+      .update({ questions: survey.questions })
+      .eq('id', survey.id)
       .select()
   }
 

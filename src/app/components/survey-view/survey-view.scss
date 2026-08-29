@@ -137,9 +137,6 @@ section {
 }
 
 .answer-item {
-
-
-
     &:hover {
         background-color: #ffb77079;
         border-radius: 3px;
@@ -183,6 +180,10 @@ section {
 
         &:hover {
             cursor: pointer;
+        }
+
+        .active {
+            background-image: url("./../../../../public/assets/img/icons/check.svg");
         }
     }
 
@@ -286,6 +287,7 @@ aside {
     }
 
     .percent {
+        width: 40px;
         font-weight: 800;
         color: #D79451;
         line-height: 100%;

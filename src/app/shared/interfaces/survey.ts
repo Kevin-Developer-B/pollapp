@@ -12,6 +12,6 @@ export interface Question {
     multipleAnswers: boolean;
     answers: {
         answer: string;
-        vote: number;
+        selected: boolean;
     }[];
 }

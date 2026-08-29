@@ -69,11 +69,11 @@ export class SurveyForm implements OnInit {
       answers: new FormArray<FormGroup>([
         new FormGroup({
           answer: new FormControl('', { nonNullable: true, validators: Validators.required }),
-          vote: new FormControl(0, { nonNullable: true })
+          selected: new FormControl(false, { nonNullable: true })
         }),
         new FormGroup({
           answer: new FormControl('', { nonNullable: true, validators: Validators.required }),
-          vote: new FormControl(0, { nonNullable: true })
+          selected: new FormControl(false, { nonNullable: true })
         })
       ])
     });
@@ -118,7 +118,7 @@ export class SurveyForm implements OnInit {
     answers.push(
       new FormGroup({
         answer: new FormControl('', { nonNullable: true, validators: Validators.required }),
-        vote: new FormControl(0, { nonNullable: true })
+        selected: new FormControl(false, { nonNullable: true })
       })
     );
   }
@@ -126,7 +126,7 @@ export class SurveyForm implements OnInit {
   clearAnswer(questionIndex: number, answerIndex: number): void {
     let group = this.getAnswers(questionIndex).at(answerIndex) as FormGroup;
     group.get('answer')?.setValue('');
-    group.get('vote')?.setValue(0);;
+    group.get('selected')?.setValue(false);
   }
 
   showAnswerNotice(questionIndex: number): boolean {
