@@ -11,9 +11,15 @@ h2 {
     font-family: 'NerkoOne';
 }
 
-.surveys {
+.surveys-container {
     margin-top: 32px;
     font-family: 'Mulish';
+
+    .survey-box {
+        display: flex;
+        gap: 32px;
+    }
+    
 
     h3 {
         font-size: 32px;
@@ -34,15 +40,19 @@ h2 {
         height: 310px;
         width: 321px;
         padding: 40px 18px;
-        background-color: #FAF5FE;
         border-radius: 0 80px 0 0;
-        color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        text-align: left;
-        transition: 100ms ease-in-out;
-        cursor: pointer;
+
+
+        &--design {
+            background-color: #FAF5FE;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            transition: 100ms ease-in-out;
+            cursor: pointer;
+        }
 
         &:hover {
             background-color: #F4E9FB;
@@ -52,18 +62,23 @@ h2 {
             }
         }
 
-        &__category {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 100%;
-            margin-bottom: 8px;
-        }
+        .surveynamebox {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
 
-        h4 {
-            font-size: 26px;
-            font-weight: 700;
-            line-height: 100%;
-            font-style: bold;
+            &__category {
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 100%;
+                margin-bottom: 8px;
+            }
+
+            h4 {
+                font-size: 26px;
+                font-weight: 700;
+                line-height: 100%;
+            }
         }
 
         &__day {

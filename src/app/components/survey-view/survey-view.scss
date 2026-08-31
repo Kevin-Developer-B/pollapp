@@ -225,6 +225,10 @@ aside {
     }
 }
 
+.no-result-container {
+    height: 600px;
+}
+
 .no-result-box {
     height: 214px;
     @include mx.flex-column;

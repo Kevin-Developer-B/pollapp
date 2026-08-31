@@ -3,10 +3,11 @@ import { Surveys } from '../../shared/services/surveys';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Service } from '../../services/service';
 import { Question, Survey } from '../../shared/interfaces/survey';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-survey-view',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './survey-view.html',
   styleUrl: './survey-view.scss',
 })

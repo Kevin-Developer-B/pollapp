@@ -60,6 +60,7 @@ export class Surveys {
 
   async addSurvey(survey: SurveyModel) {
     const survey_data = survey.getCleanAddJson();
+    survey_data.date = this.normalizeDate(survey_data.date);
     const { data, error } = await this.db.supabase
       .from('survey')
       .insert([
@@ -87,4 +88,22 @@ export class Surveys {
     this.db.supabase.removeChannel(this.surveylistInsertChannel);
     this.db.supabase.removeChannel(this.surveylistUpdateChannel);
   }
+
+  private normalizeDate(input: string): string {
+    if (!input) return input;
+    if (input.includes('.')) {
+      const [day, month, year] = input.split('.');
+      return `${year}-${month}-${day}`;
+    }
+    if (input.includes('-') && input.split('-')[0].length === 2) {
+      const [day, month, year] = input.split('-');
+      return `${year}-${month}-${day}`;
+    }
+    if (input.includes('/')) {
+      const [year, month, day] = input.split('/');
+      return `${year}-${month}-${day}`;
+    }
+    return input;
+  }
+
 }
