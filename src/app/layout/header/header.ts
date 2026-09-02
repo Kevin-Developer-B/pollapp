@@ -12,16 +12,13 @@ export class Header {
   router = inject(Router);
   route = inject(ActivatedRoute)
   surveyService = inject(Surveys)
-
-  ngOnInit() {
-  }
-
+  
 
   thisRoute() {
     return this.router.url;
   }
 
   isSurveyRoute() {
-  return this.router.url.startsWith('/survey/');
-}
+    return this.router.url.startsWith('/survey/');
+  }
 }

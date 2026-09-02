@@ -43,7 +43,7 @@ export class Surveyslist {
   cardlist = [...this.allCards];
 
   ngOnInit() {
-    this.filterSelection('active')
+    this.filterSelection('active');
   }
 
   filterSelection(item: string) {
@@ -56,5 +56,10 @@ export class Surveyslist {
     this.selectedCategory = item
     let card = this.allCards.filter(card => card.catergory == item)
     if (card) this.cardlist = card
+  }
+
+  resetFilter() {
+    this.cardlist = [...this.allCards];
+    this.filterSelection('active');
   }
 }

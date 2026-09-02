@@ -41,11 +41,11 @@
                                         <li class="answer-item">
                                             <label>
                                                 <input type="checkbox" name="answer-{{ $index }}"
-                                                    (change)="onSelected(item, $index, $event)"
+                                                    (change)="onSelected(item, $index)" class="single-select"
                                                     [checked]="answers.selected" [class.active]="answers.selected">
-                                                <div>
+                                                <div class="answer-item--position">
                                                     <span class="marker">{{ toLetter($index) }}.</span>
-                                                    <span class="text">{{ answers.answer }}</span>
+                                                    <span>{{ answers.answer }}</span>
                                                 </div>
                                             </label>
                                         </li>

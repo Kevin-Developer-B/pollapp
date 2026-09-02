@@ -10,6 +10,7 @@
             <div class="dropdown">
                 <button (click)="dropdownMenu.toggleDropdown()" class="dropbtn" [class.active]="dropdownMenu.isDropdownOpen"></button>
                 <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
+                    <button (click)="dropdownMenu.toggleDropdown(); resetFilter(); dropdownMenu.dropdownText.set('')">All Surveys</button>
                     <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Team activities'); dropdownMenu.dropdownText.set('Team Activities')">Team Activities</button>
                     <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Health & Wellness'); dropdownMenu.dropdownText.set('Health & Wellness')">Health & Wellness</button>
                     <button (click)="dropdownMenu.toggleDropdown(); filterCategory('Gaming & Entertainment'); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming &

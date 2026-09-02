@@ -37,9 +37,18 @@ export class SurveyView {
     return String.fromCharCode(65 + index);
   }
 
-  onSelected(question: Question, index: number, event: Event) {
-    const checkbox = event.target as HTMLInputElement;
-    question.answers[index].selected = checkbox.checked;
+  onSelected(question: Question, index: number) {
+    if (question.multipleAnswers) {
+      question.answers[index].selected = !question.answers[index].selected;
+      return;
+    }
+    if (question.answers[index].selected) {
+      question.answers[index].selected = false;
+      return;
+    }
+    question.answers.forEach((a, i) => {
+      a.selected = i === index;
+    });
   }
 
   getPercent(qIndex: number, aIndex: number) {

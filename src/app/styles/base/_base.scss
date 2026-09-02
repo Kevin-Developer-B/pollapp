@@ -8,6 +8,7 @@ body {
     &.body--primary {
         background-color: #35273A;
     }
+
     &.body--secondary {
         background-color: #FFFFFF;
     }
@@ -81,4 +82,21 @@ button {
         font-weight: 700;
         color: #35273A;
     }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FFB770;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffb770cc;
 }
