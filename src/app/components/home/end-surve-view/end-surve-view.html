@@ -4,6 +4,7 @@
         <h3>Ending soon surveys</h3>
         <div class="survey-box">
             @for (item of list(); track item.id; let inde = $index) {
+            @if ( item.date | daysLeft) {
             <button class="card card--design" [routerLink]="['survey', item.id]">
                 <div class="surveynamebox">
                     <p class="surveynamebox__category">{{ item.category }}</p>
@@ -11,6 +12,7 @@
                 </div>
                 <p class="card__day">Ends in {{ item.date | daysLeft}} Day</p>
             </button>
+            }
             }
         </div>
     </div>

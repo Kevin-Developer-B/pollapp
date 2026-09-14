@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { Surveys } from '../../../shared/services/surveys';
 import { RouterLink } from '@angular/router';
 import { DaysLeftPipe } from '../../../shared/pipes/pipes';
@@ -11,6 +11,5 @@ import { DaysLeftPipe } from '../../../shared/pipes/pipes';
 })
 export class EndSurveView {
   surveyService = inject(Surveys);
-
-  list = this.surveyService.surveyslist
+  list = this.surveyService.surveyslist;
 }
