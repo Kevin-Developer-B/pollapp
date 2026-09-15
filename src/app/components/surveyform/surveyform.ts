@@ -39,7 +39,7 @@ export class SurveyForm implements OnInit {
   surveyform = new FormGroup({
     surveyname: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     date: new FormControl('', { nonNullable: true }),
-    category: new FormControl('', { nonNullable: true }),
+    category: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     description: new FormControl('', { nonNullable: true }),
     questions: new FormArray<FormGroup>([])
   });
@@ -52,7 +52,6 @@ export class SurveyForm implements OnInit {
     let currentBg = this.service.setSecondary()
     if (currentBg!) this.path = currentBg
     this.addQuestion();
-    // this.surveyService.deleteSurvey(1);
   }
 
 

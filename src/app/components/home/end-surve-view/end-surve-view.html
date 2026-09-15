@@ -3,7 +3,7 @@
     <div class="surveys-container">
         <h3>Ending soon surveys</h3>
         <div class="survey-box">
-            @for (item of list(); track item.id; let inde = $index) {
+            @for (item of sortedList(); track item.id; let inde = $index) {
             @if ( item.date | daysLeft) {
             <button class="card card--design" [routerLink]="['survey', item.id]">
                 <div class="surveynamebox">

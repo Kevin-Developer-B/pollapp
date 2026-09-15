@@ -31,7 +31,12 @@
                         <div class="dropdown">
                             <button type="button" (click)="dropdownMenu.toggleDropdown()" class="dropbtn"
                                 [class.active]="dropdownMenu.isDropdownOpen"></button>
-                            <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
+                            @if (dropdownMenu.isDropdownOpen) {
+                            <div class="dropdown-content">
+                                <button type="button"
+                                    (click)="dropdownMenu.toggleDropdown(); selectCategory(''); dropdownMenu.dropdownText.set('')">
+                                    All
+                                    Surveys</button>
                                 <button type="button"
                                     (click)="dropdownMenu.toggleDropdown(); selectCategory('Team Activities'); dropdownMenu.dropdownText.set('Team Activities')">Team
                                     Activities</button>
@@ -56,6 +61,7 @@
                                     &
                                     Innovation</button>
                             </div>
+                            }
                         </div>
                         <p class="active-catergory">{{dropdownMenu.dropdownText()}}</p>
                     </div>
