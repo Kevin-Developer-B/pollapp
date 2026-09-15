@@ -1,10 +1,10 @@
 <section>
     <div class="search-surveys">
         <div class="search-surveys__box">
-            <button class="search-surveys__btn" [class.active]="selectedActive === 'active'"
-                (click)="filterSelection('active'); dropdownMenu.dropdownText.set('')">Active survey</button>
-            <button class="search-surveys__btn" [class.active]="selectedActive === 'past'"
-                (click)="filterSelection('past'); dropdownMenu.dropdownText.set('')">Past survey</button>
+            <button class="search-surveys__btn" [class.active]="selectedActive() === 'active'"
+                (click)="filterSelection('active');">Active survey</button>
+            <button class="search-surveys__btn" [class.active]="selectedActive() === 'past'"
+                (click)="filterSelection('past');">Past survey</button>
         </div>
         <div class="dropdownbox">
             <div class="dropdown">
@@ -12,10 +12,10 @@
                     [class.active]="dropdownMenu.isDropdownOpen"></button>
                 <div class="dropdown-content" *ngIf="dropdownMenu.isDropdownOpen">
                     <button
-                        (click)="dropdownMenu.toggleDropdown(); resetFilter(); dropdownMenu.dropdownText.set('')">All
+                        (click)="dropdownMenu.toggleDropdown(); resetFilter();">All
                         Surveys</button>
                     <button
-                        (click)="dropdownMenu.toggleDropdown(); filterCategory('Team activities'); dropdownMenu.dropdownText.set('Team Activities')">Team
+                        (click)="dropdownMenu.toggleDropdown(); filterCategory('Team Activities'); dropdownMenu.dropdownText.set('Team Activities')">Team
                         Activities</button>
                     <button
                         (click)="dropdownMenu.toggleDropdown(); filterCategory('Health & Wellness'); dropdownMenu.dropdownText.set('Health & Wellness')">Health
@@ -42,8 +42,8 @@
         </div>
     </div>
     <div class="surveyslist">
-        @for (item of list(); track item) {
-        @if (selectedActive === 'active' && (item.date | daysLeft) > 0) {
+        @for (item of cardlist(); track item.id) {
+        @if (selectedActive() === 'active' && (item.date | daysLeft) > 0) {
         <button class="card">
             <div class="card__box">
                 <p class="card__box--category">{{item.category}}</p>
@@ -52,7 +52,7 @@
             <p class="card--day">Ends in {{(item.date | daysLeft)}} Day</p>
         </button>
         }
-        @if (selectedActive === 'past' && (item.date | daysLeft) <= 0) {
+        @if (selectedActive() === 'past' && (item.date | daysLeft) <= 0) {
         <button class="card">
             <div class="card__box">
                 <p class="card__box--category">{{item.category}}</p>
