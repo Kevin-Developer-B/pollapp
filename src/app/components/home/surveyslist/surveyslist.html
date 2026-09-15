@@ -1,10 +1,10 @@
 <section>
     <div class="search-surveys">
         <div class="search-surveys__box">
-            <button class="search-surveys__btn" [class.active]="selectedActive() === 'active'"
-                (click)="filterSelection('active');">Active survey</button>
-            <button class="search-surveys__btn" [class.active]="selectedActive() === 'past'"
-                (click)="filterSelection('past');">Past survey</button>
+            <button class="search-surveys__btn" [class.active]="selectedActive() === true"
+                (click)="toggleActive();">Active survey</button>
+            <button class="search-surveys__btn" [class.active]="selectedPast() === true" (click)="togglePast()">Past
+                survey</button>
         </div>
         <div class="dropdownbox">
             <div class="dropdown">
@@ -44,22 +44,18 @@
     </div>
     <div class="surveyslist">
         @for (item of cardlist(); track item.id) {
-        @if (selectedActive() === 'active' && (item.date | daysLeft) > 0) {
-        <button class="card">
+        @if ((selectedActive() && (item.date | daysLeft) > 0) ||
+        (selectedPast() && (item.date | daysLeft) <= 0)) { <button class="card" [routerLink]="['survey', item.id]">
             <div class="card__box">
                 <p class="card__box--category">{{item.category}}</p>
                 <h3 class="card__box--text">{{item.surveyname}}</h3>
             </div>
             <p class="card--day">Ends in {{(item.date | daysLeft)}} Day</p>
-        </button>
-        }
-        @if (selectedActive() === 'past' && (item.date | daysLeft) <= 0) { <button class="card">
-            <div class="card__box">
-                <p class="card__box--category">{{item.category}}</p>
-                <h3 class="card__box--text">{{item.surveyname}}</h3>
-            </div>
             </button>
             }
+            }
+            @if (!selectedActive() && !selectedPast()) {
+                <p class="notice-text">Please select active or past survey</p>
             }
     </div>
 </section>
