@@ -50,12 +50,14 @@
                 <p class="card__box--category">{{item.category}}</p>
                 <h3 class="card__box--text">{{item.surveyname}}</h3>
             </div>
+            @if (item.date | daysLeft) {
             <p class="card--day">Ends in {{(item.date | daysLeft)}} Day</p>
+            }
             </button>
             }
             }
             @if (!selectedActive() && !selectedPast()) {
-                <p class="notice-text">Please select active or past survey</p>
+            <p class="notice-text">Please select active or past survey</p>
             }
     </div>
 </section>

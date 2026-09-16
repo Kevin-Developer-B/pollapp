@@ -19,4 +19,11 @@ export class Service {
     document.body.classList.remove('body--primary');
     document.body.classList.add('body--secondary');
   }
+
+  getDaysLeft(date: string | Date): number {
+    let end = new Date(date);
+    let today = new Date();
+    let diff = end.getTime() - today.getTime();
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  }
 }

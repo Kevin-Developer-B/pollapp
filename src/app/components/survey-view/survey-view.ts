@@ -22,6 +22,7 @@ export class SurveyView {
   survey = this.surveyService.surveydetail;
 
   liveSurvey!: Survey;
+  fakeVotes = signal<number[][]>([]);
 
   ngOnInit() {
     let currentBg = this.service.setSecondary()
@@ -31,6 +32,9 @@ export class SurveyView {
     if (currentId) this.surveyService.setSurveyDetailById(currentId);
 
     this.liveSurvey = structuredClone(this.survey());
+
+    let generated = this.generateFakeVotes(this.liveSurvey.questions);
+    this.fakeVotes.set(generated);
   }
 
   toLetter(index: number): string {
@@ -51,11 +55,30 @@ export class SurveyView {
     });
   }
 
-  getPercent(qIndex: number, aIndex: number) {
-    const answers = this.liveSurvey.questions[qIndex].answers;
-    const total = answers.reduce((sum, a) => sum + (a.selected ? 1 : 0), 0);
+  generateFakeVotes(questions: any[]) {
+    return questions.map(question => {
+      return question.answers.map(() => {
+        return Math.floor(Math.random() * 21); // 0–20 Fake-Stimmen
+      });
+    });
+  }
+
+  getTotalVotes(qIndex: number, aIndex: number): number {
+    let real = this.liveSurvey.questions[qIndex].answers[aIndex].selected ? 1 : 0;
+    let fake = this.fakeVotes()[qIndex][aIndex];
+    return real + fake;
+  }
+
+  getTotalVotesForQuestion(qIndex: number): number {
+    return this.liveSurvey.questions[qIndex].answers
+      .reduce((sum, _, aIndex) => sum + this.getTotalVotes(qIndex, aIndex), 0);
+  }
+
+  getPercent(qIndex: number, aIndex: number): number {
+    let total = this.getTotalVotesForQuestion(qIndex);
     if (total === 0) return 0;
-    const value = answers[aIndex].selected ? 1 : 0;
+
+    let value = this.getTotalVotes(qIndex, aIndex);
     return Math.round((value / total) * 100);
   }
 

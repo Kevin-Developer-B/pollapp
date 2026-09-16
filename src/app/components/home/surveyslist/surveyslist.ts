@@ -1,9 +1,10 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownMenu } from '../../../services/dropdown_service';
 import { Surveys } from '../../../shared/services/surveys';
 import { DaysLeftPipe } from '../../../shared/pipes/pipes';
 import { RouterLink } from '@angular/router';
+import { Service } from '../../../services/service';
 
 @Component({
   selector: 'app-surveyslist',
@@ -15,18 +16,12 @@ import { RouterLink } from '@angular/router';
 
 export class Surveyslist {
   surveyService = inject(Surveys);
-  list = this.surveyService.surveyslist;
   dropdownMenu = inject(DropdownMenu);
+  service = inject(Service);
+  list = this.surveyService.surveyslist;
   selectedActive = signal(true);
   selectedPast = signal(false);
   selectedCategory = signal('');
-
-  private getDaysLeft(date: string | Date): number {
-    let end = new Date(date);
-    let today = new Date();
-    let diff = end.getTime() - today.getTime();
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
-  }
 
 
   cardlist = computed(() => {
@@ -34,18 +29,13 @@ export class Surveyslist {
     let past = this.selectedPast();
     let category = this.selectedCategory();
     let surveys = this.list();
-
     return surveys.filter(item => {
-      let days = this.getDaysLeft(item.date);
-
+      let days = this.service.getDaysLeft(item.date);
       let activeCheck = active && days > 0;
       let pastCheck = past && days <= 0;
-
       let noSelection = !active && !past;
-
       let categoryCheck =
         category === '' ? true : item.category === category;
-
       return (activeCheck || pastCheck || noSelection) && categoryCheck;
     });
   });
@@ -57,11 +47,6 @@ export class Surveyslist {
 togglePast() {
   this.selectedPast.set(!this.selectedPast());
 }
-
-
-  // filterSelection(item: string) {
-  //   this.selectedActive.set(item);
-  // }
 
   filterCategory(item: string) {
     this.selectedCategory.set(item);
