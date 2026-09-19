@@ -12,6 +12,8 @@ body {
     &.body--secondary {
         background-color: #FFFFFF;
     }
+
+    cursor: default;
 }
 
 
@@ -100,4 +102,47 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #ffb770;
+}
+
+@media(max-width: 1440px) {
+    .app-wrapper {
+        padding: 0;
+    }
+}
+
+@media(max-width: 1130px) {
+    .collect-btn {
+        padding: 12px 16px;
+        transition: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        &__text {
+            padding: 0;
+        }
+
+        &__icon {
+            position: relative;
+            opacity: 1;
+            top: 0;
+            right: 0;
+            transition: none;
+        }
+
+        &--primary {
+            border-radius: 10px;
+            background-color: #FFB770;
+        }
+
+        &:hover {
+            padding-right: 16px;
+
+            .collect-btn__icon {
+                right: 0;
+                opacity: 1;
+            }
+        }
+    }
 }

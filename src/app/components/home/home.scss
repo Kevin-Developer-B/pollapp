@@ -1,0 +1,24 @@
+.home-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    margin-bottom: 96px;
+    padding: 0 111px;
+}
+
+@media(max-width: 1430px) {
+    .home-wrapper {
+    padding: 0 48px;
+}
+}
+
+@media(max-width: 1430px) {
+    .home-wrapper {
+    padding: 0 16px;
+}
+}
+
+@media(max-width: 890px) {
+    .home-wrapper {
+    margin-bottom: 16px;
+}
+}

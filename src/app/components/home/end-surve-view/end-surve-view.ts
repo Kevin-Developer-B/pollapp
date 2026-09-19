@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Surveys } from '../../../shared/services/surveys';
 import { RouterLink } from '@angular/router';
 import { DaysLeftPipe } from '../../../shared/pipes/pipes';
@@ -18,6 +18,7 @@ export class EndSurveView {
   sortedList = computed(() => {
     return [...this.list()]
       .filter(item => this.service.getDaysLeft(item.date) > 0)
-      .sort((a, b) => this.service.getDaysLeft(a.date) - this.service.getDaysLeft(b.date));
+      .sort((a, b) => this.service.getDaysLeft(a.date) - this.service.getDaysLeft(b.date))
+      .slice(0, 3);
   });
 }

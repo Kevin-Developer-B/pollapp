@@ -1,166 +1,174 @@
-<form [formGroup]="surveyform" (ngSubmit)="submit()">
-    <div class="headline">
-        <span>
-            <h3>Draft</h3>
-            <h2>Create new survey</h2>
-        </span>
-        <button type="button" (click)="closeForm()" class="closeBtn closeBtn--color">
-            <p>Cancel</p>
-            <span>X</span>
-        </button>
-    </div>
-    <div class="container">
-        <div class="labeling">
-            <div class="entry-details">
-                <div class="surveyname">
-                    <label>Survey Name</label>
-                    <div class="surveyname--flex">
-                        <input type="text" formControlName="surveyname">
-                        <button type="button" class="trash" (click)="clearField('surveyname')"></button>
-                    </div>
-                </div>
-                <div class="date-category">
-                    <div class="date-category__date">
-                        <label>Set end date <span class="optional">(optional)</span></label>
-                        <div class="date-category__date--flex">
-                            <input type="text" formControlName="date">
-                            <button type="button" class="trash" (click)="clearField('date')"></button>
-                        </div>
-                    </div>
-                    <div class="dropdownbox">
-                        <div class="dropdown">
-                            <button type="button" (click)="dropdownMenu.toggleDropdown()" class="dropbtn"
-                                [class.active]="dropdownMenu.isDropdownOpen"></button>
-                            @if (dropdownMenu.isDropdownOpen) {
-                            <div class="dropdown-content">
-                                <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); selectCategory(''); dropdownMenu.dropdownText.set('')">
-                                    All
-                                    Surveys</button>
-                                <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Team Activities'); dropdownMenu.dropdownText.set('Team Activities')">Team
-                                    Activities</button>
-                                <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Health & Wellness'); dropdownMenu.dropdownText.set('Health & Wellness')">Health
-                                    & Wellness</button>
-                                <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Gaming & Entertainment'); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming
-                                    &
-                                    Entertainment</button>
-                                <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Education & Learning'); dropdownMenu.dropdownText.set('Education & Learning')">Education
-                                    &
-                                    Learning</button>
-                                <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Lifestyle & Preferences'); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle
-                                    &
-                                    Preferences</button>
-
-                                <button type="button"
-                                    (click)="dropdownMenu.toggleDropdown(); selectCategory('Technology & Innovation'); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology
-                                    &
-                                    Innovation</button>
-                            </div>
-                            }
-                        </div>
-                        <p class="active-catergory">{{dropdownMenu.dropdownText()}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="description">
-                <label for="description">Description text <span class="optional">(optional)</span></label>
-                <div class="description--flex">
-                    <textarea class="description__textarea" id="description" formControlName="description"></textarea>
-                    <button type="button" class="trash" (click)="clearField('description')"></button>
-                </div>
-            </div>
+<section class="form-wrapper">
+    <form [formGroup]="surveyform" (ngSubmit)="submit()">
+        <div class="headline">
+            <span>
+                <h3>Draft</h3>
+                <h2>Create new survey</h2>
+            </span>
+            <button type="button" (click)="closeForm()" class="closeBtn closeBtn--color">
+                <p>Cancel</p>
+                <span>X</span>
+            </button>
         </div>
-        <div class="questionsbox">
-            <div class="questions-grid" formArrayName="questions">
-                @for (question of questions.controls; track $index; let questionIndex = $index) {
-                <div class="question" [formGroupName]="$index">
-                    <div class="question-headline">
-                        <div class="question-headline--flex">
-                            <div>
-                                <h4>{{ $index + 1}}. Question</h4>
-                            </div>
-                            <button type="button" class="trash" (click)="deleteQuestion(questionIndex)"></button>
+        <div class="container">
+            <div class="labeling">
+                <div class="entry-details">
+                    <div class="surveyname">
+                        <label>Survey Name</label>
+                        <div class="surveyname--flex">
+                            <input type="text" formControlName="surveyname">
+                            <button type="button" class="trash" (click)="clearField('surveyname')"></button>
                         </div>
-                        <input type="text" formControlName="question"
-                            [placeholder]="questionPlaceholders[$index] || 'Enter your question...'">
                     </div>
-                    <div class="answer">
-                        <div class="answer__headline">
-                            <h4>Answers</h4>
-                            <label class="answer__checkbox">
-                                <input type="checkbox" formControlName="multipleAnswers">
-                                <p class="answer__checkbox--text">Allow multiple answers.</p>
-                            </label>
-                        </div>
-                        <div formArrayName="answers">
-                            @for(answer of getAnswers(questionIndex).controls; track answer; let answerIndex = $index) {
-                            <div class="answer-box">
-                                <label>
-                                    {{ getAnswerLabel(answerIndex)+"." }}
-                                </label>
-                                <div [formGroupName]="answerIndex" style="display: contents;">
-                                    <input type="text" formControlName="answer">
-                                    <input type="number" formControlName="selected" hidden>
-                                </div>
-                                <button class="trash" type="button"
-                                    (click)="answerIndex < minAnswer ? clearAnswer(questionIndex, answerIndex) : removeAnswer(questionIndex, answerIndex)"></button>
+                    <div class="date-category">
+                        <div class="date-category__date">
+                            <label>Set end date <span class="optional">(optional)</span></label>
+                            <div class="date-category__date--flex">
+                                <input type="text" formControlName="date">
+                                <button type="button" class="trash" (click)="clearField('date')"></button>
                             </div>
-                            }
-                            <div class="button-box button-box--add_answer">
-                                <button class="add_answer_btn" type="button" (click)="addAnswer($index)"
-                                    [disabled]="!canAddAnswer(questionIndex)">
-                                    <div class="add">
-                                        <p class="add__text">Add answer</p>
-                                        <img src="./assets/img/icons/add_circle-white.svg" alt="Weißes Hinzufügen Icon">
-                                    </div>
-                                    <hr class="underline">
+                        </div>
+                        <div class="dropdownbox">
+                            <div class="dropdown">
+                                <button type="button" (click)="dropdownMenu.toggleDropdown()" class="dropbtn"
+                                    [class.active]="dropdownMenu.isDropdownOpen" [class.category-selected]="dropdownMenu.dropdownText() !== ''">
+                                    <p class="dropbtn__text">Choose category</p>
+                                    <div class="dropdown-arrow"></div>
                                 </button>
-                                @if (showAnswerNotice(questionIndex)) {
-                                <p class="button-box--add_answer__notice">{{answerText}}</p>
+                                @if (dropdownMenu.isDropdownOpen) {
+                                <div class="dropdown-content">
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); selectCategory(''); dropdownMenu.dropdownText.set('')">
+                                        All
+                                        Surveys</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); selectCategory('Team Activities'); dropdownMenu.dropdownText.set('Team Activities')">Team
+                                        Activities</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); selectCategory('Health & Wellness'); dropdownMenu.dropdownText.set('Health & Wellness')">Health
+                                        & Wellness</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); selectCategory('Gaming & Entertainment'); dropdownMenu.dropdownText.set('Gaming & Entertainment')">Gaming
+                                        &
+                                        Entertainment</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); selectCategory('Education & Learning'); dropdownMenu.dropdownText.set('Education & Learning')">Education
+                                        &
+                                        Learning</button>
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); selectCategory('Lifestyle & Preferences'); dropdownMenu.dropdownText.set('Lifestyle & Preferences')">Lifestyle
+                                        &
+                                        Preferences</button>
+
+                                    <button type="button"
+                                        (click)="dropdownMenu.toggleDropdown(); selectCategory('Technology & Innovation'); dropdownMenu.dropdownText.set('Technology & Innovation')">Technology
+                                        &
+                                        Innovation</button>
+                                </div>
                                 }
                             </div>
+                            <p class="active-catergory">{{dropdownMenu.dropdownText()}}</p>
                         </div>
                     </div>
                 </div>
-                }
-                <div class="add-question-box">
-                    @if (questions.length < maxQuestion) { <div class="add-question-card">
-                        <button class="add-question-btn" type="button" (click)="addQuestion()">
-                            <p class="add-question-btn__text">Add next question</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
-                                fill="#FEFDFF">
-                                <path
-                                    d="M444-288h72v-156h156v-72H516v-156h-72v156H288v72h156v156Zm36.28 192Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" />
-                            </svg>
-                        </button>
+                <div class="description">
+                    <label for="description">Description text <span class="optional">(optional)</span></label>
+                    <div class="description--flex">
+                        <textarea class="description__textarea" id="description"
+                            formControlName="description"></textarea>
+                        <button type="button" class="trash" (click)="clearField('description')"></button>
+                    </div>
                 </div>
-                }
-                @if (showQuestionLimit()) {
-                <p class="add-question-box__notice">
-                    You can add up to 4 questions.
-                </p>
+            </div>
+            <div class="questionsbox">
+                <div class="questions-grid" formArrayName="questions">
+                    @for (question of questions.controls; track $index; let questionIndex = $index) {
+                    <div class="question" [formGroupName]="$index">
+                        <div class="question-headline">
+                            <div class="question-headline--flex">
+                                <div>
+                                    <h4>{{ $index + 1}}. Question</h4>
+                                </div>
+                                <button type="button" class="trash" (click)="deleteQuestion(questionIndex)"></button>
+                            </div>
+                            <input type="text" formControlName="question"
+                                [placeholder]="questionPlaceholders[$index] || 'Enter your question...'">
+                        </div>
+                        <div class="answer">
+                            <div class="answer__headline">
+                                <h4>Answers</h4>
+                                <label class="answer__checkbox">
+                                    <input type="checkbox" formControlName="multipleAnswers">
+                                    <p class="answer__checkbox--text">Allow multiple answers.</p>
+                                </label>
+                            </div>
+                            <div formArrayName="answers">
+                                @for(answer of getAnswers(questionIndex).controls; track answer; let answerIndex =
+                                $index) {
+                                <div class="answer-box">
+                                    <label>
+                                        {{ getAnswerLabel(answerIndex)+"." }}
+                                    </label>
+                                    <div [formGroupName]="answerIndex" style="display: contents;">
+                                        <input type="text" formControlName="answer">
+                                        <input type="number" formControlName="selected" hidden>
+                                    </div>
+                                    <button class="trash" type="button"
+                                        (click)="answerIndex < minAnswer ? clearAnswer(questionIndex, answerIndex) : removeAnswer(questionIndex, answerIndex)"></button>
+                                </div>
+                                }
+                                <div class="button-box button-box--add_answer">
+                                    <button class="add_answer_btn" type="button" (click)="addAnswer($index)"
+                                        [disabled]="!canAddAnswer(questionIndex)">
+                                        <div class="add">
+                                            <p class="add__text">Add answer</p>
+                                            <img src="./assets/img/icons/add_circle-white.svg"
+                                                alt="Weißes Hinzufügen Icon">
+                                        </div>
+                                        <hr class="underline">
+                                    </button>
+                                    @if (showAnswerNotice(questionIndex)) {
+                                    <p class="button-box--add_answer__notice">{{answerText}}</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    <div class="add-question-box">
+                        @if (questions.length < maxQuestion) { <div class="add-question-card">
+                            <button class="add-question-btn" type="button" (click)="addQuestion()">
+                                <p class="add-question-btn__text">Add next question</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960"
+                                    width="20px" fill="#FEFDFF">
+                                    <path
+                                        d="M444-288h72v-156h156v-72H516v-156h-72v156H288v72h156v156Zm36.28 192Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30Zm-.28-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" />
+                                </svg>
+                            </button>
+                    </div>
+                    }
+                    @if (showQuestionLimit()) {
+                    <p class="add-question-box__notice">
+                        You can add up to 4 questions.
+                    </p>
+                    }
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="overlay" [class.show]="isPopUp"></div>
+        <div class="button-box button-box--public">
+            <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
+                <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
+            </button>
+            <div class="publish" [class.show]="isPopUp">
+                <p>Your servey is now <br> published</p>
+                @for (item of surveyService.surveyslist(); track item.id) {
+                <a [routerLink]="['/survey', item.id]">
+                    <img src="./assets/img/icons/close_black.svg" alt="schwarzes Kreuz">
+                </a>
                 }
             </div>
         </div>
-    </div>
-    </div>
-    <div class="overlay" [class.show]="isPopUp"></div>
-    <div class="button-box button-box--public">
-        <button class="btn btn--primary" type="submit" [disabled]="!surveyform.valid">Publish
-            <img class="btn__chop" src="./assets/img/icons/check.svg" alt="Hacken">
-        </button>
-        <div class="publish" [class.show]="isPopUp">
-            <p>Your servey is now <br> published</p>
-            @for (item of surveyService.surveyslist(); track item.id) {
-            <a [routerLink]="['/survey', item.id]">
-                <img src="./assets/img/icons/close_black.svg" alt="schwarzes Kreuz">
-            </a>
-            }
-        </div>
-    </div>
-</form>
+    </form>
+</section>

@@ -2,8 +2,7 @@
 
 section {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    @include mx.flex-column;
     align-items: center;
     padding: 16px 70px;
     gap: 40px;
@@ -38,13 +37,12 @@ section {
 }
 
 .surveyslist {
-    height: 413px;
     max-height: 413px;
     overflow-y: auto;
     width: 100%;
     display: grid;
     grid-template-columns: auto auto;
-    gap: 16px;
+    grid-gap: 16px;
 }
 
 .card {
@@ -80,6 +78,7 @@ section {
             font-weight: 700;
             font-size: 24px;
             line-height: 100%;
+            text-align: start;
         }
     }
 
@@ -157,4 +156,70 @@ section {
     font-size: 32px;
     color: #FFB770;
     text-align: center;
+}
+
+@media(max-width: 1220px) {
+    section {
+        padding: 16px;
+    }
+}
+
+@media(max-width: 1120px) {
+    .card {
+        width: 400px;
+    }
+}
+
+@media(max-width: 890px) {
+    .surveyslist {
+        height: 750px;
+        grid-template-columns: auto;
+        grid-gap: 8px;
+        margin: 0 auto;
+        max-width: 400px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+@media(max-width: 530px) {
+    section {
+        margin-top: 48px;
+        gap: 96px;
+        padding: 0;
+
+        .search-surveys {
+            @include mx.flex-column;
+            align-items: start;
+            @include mx.gap(28px);
+
+            &__box {
+                width: 249px;
+                display: flex;
+                gap: 24px;
+            }
+        }
+    }
+}
+
+@media(max-width: 470px) {
+    .surveyslist {
+        height: 750px;
+        grid-template-columns: auto;
+        grid-gap: 8px;
+        margin: 0 auto;
+        max-width: 280px;
+    }
+
+    .card {
+        width: 280px;
+
+        &__box {
+            &--text {
+                font-size: 20px;
+            }
+        }
+    }
 }

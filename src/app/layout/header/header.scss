@@ -2,6 +2,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
+    margin-top: 39px;
+    padding: 0 111px;
 }
 
 .surveyBlackImg {
@@ -33,5 +37,11 @@ header {
         .btn__chop {
             opacity: 1;
         }
+    }
+}
+
+@media(max-width: 720px) {
+    header {
+        padding: 0 16px;
     }
 }
